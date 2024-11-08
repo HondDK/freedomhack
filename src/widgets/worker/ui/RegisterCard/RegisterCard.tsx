@@ -6,9 +6,15 @@ import { CardDescription, CardHeader, CardTitle, Card } from '@/shared/ui/card';
 import { useRegisterUserFinish, useRegisterUserCode, useRegisterUserInit } from '@/entities/worker/hooks';
 import { useRouter } from 'next/navigation';
 import { LoadingSpinner } from '@/shared/ui/LoadingSpiner';
+import { getCookie } from 'cookies-next';
 
 export function RegisterCard(){
   const router = useRouter()
+  const authToken = getCookie('authToken')
+
+  if(authToken) {
+    router.push('/')
+  }
 
   const [step, setStep] = useState(0);
   const { mutate: registerUserInit, data, isPending: initLoading, isSuccess: initSuccess }  = useRegisterUserInit()

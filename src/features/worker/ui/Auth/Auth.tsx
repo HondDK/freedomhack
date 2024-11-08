@@ -8,6 +8,8 @@ import { Button } from '@/shared/ui/button';
 import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { useAuthUser } from '@/entities/worker';
+import { useRouter } from 'next/navigation';
+import { getCookie } from 'cookies-next';
 
 const FormSchema = z.object({
   username: z.string().email({
@@ -28,6 +30,13 @@ const FormSchema = z.object({
 
 
 export function Auth(){
+  const router = useRouter()
+  const authToken = getCookie('authToken')
+
+  if(authToken) {
+    router.push('/')
+  }
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
