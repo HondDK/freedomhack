@@ -1,1 +1,0 @@
-export { AUTH_TRANSLATIONS } from './auth'
