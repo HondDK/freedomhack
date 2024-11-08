@@ -30,25 +30,13 @@ export function Header() {
         className="text-foreground transition-colors hover:text-foreground"
         href="#"
       >
-        Библиотека
+        Вакансии
       </Link>
       <Link
         className="text-muted-foreground transition-colors hover:text-foreground"
         href="#"
       >
-        Книги
-      </Link>
-      <Link
-        className="text-muted-foreground transition-colors hover:text-foreground"
-        href="#"
-      >
-        Клубы
-      </Link>
-      <Link
-        className="text-muted-foreground transition-colors hover:text-foreground"
-        href="#"
-      >
-        Всякое
+        Просмотр компаний
       </Link>
     </nav>
     <Sheet>
@@ -74,25 +62,13 @@ export function Header() {
             className="text-foreground transition-colors hover:text-foreground"
             href="#"
           >
-            Библиотека
+            Вакансии
           </Link>
           <Link
             className="text-muted-foreground transition-colors hover:text-foreground"
             href="#"
           >
-            Книги
-          </Link>
-          <Link
-            className="text-muted-foreground transition-colors hover:text-foreground"
-            href="#"
-          >
-            Клубы
-          </Link>
-          <Link
-            className="text-muted-foreground transition-colors hover:text-foreground"
-            href="#"
-          >
-            Всякое
+            Просмотр компаний
           </Link>
         </nav>
       </SheetContent>
@@ -119,7 +95,6 @@ export function Header() {
           <DropdownMenuLabel>Мой профиль</DropdownMenuLabel>
           <DropdownMenuSeparator/>
           <DropdownMenuItem>Настройки</DropdownMenuItem>
-          <DropdownMenuItem>Контакты</DropdownMenuItem>
           <DropdownMenuSeparator/>
           <DropdownMenuItem>Выйти с аккаунта</DropdownMenuItem>
         </DropdownMenuContent>
