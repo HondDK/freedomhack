@@ -57,7 +57,7 @@ export function Header() {
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
             href="#"
           >
-            <LibraryBig className="h-6 w-6"/>
+            <ScanEye className="h-6 w-6"/>
           </Link>
           <Link
             className="text-foreground transition-colors hover:text-foreground"
