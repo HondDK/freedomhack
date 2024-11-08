@@ -4,7 +4,7 @@ import './globals.css';
 import { QueryProvider, ThemeProvider } from '@/core/providers';
 
 const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
+  src:  './fonts/GeistVF.woff',
   variable: '--font-geist-sans',
   weight: '100 900',
 });
