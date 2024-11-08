@@ -1,4 +1,4 @@
-import { getCookie } from 'cookies-next/src/client';
+import { getCookie } from 'cookies-next/src';
 import type { TEndpoint, TPayload } from './api.types';
 import { createQueryString, replaceTemplate } from './api.utils';
 import axios from 'axios';

@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { Button } from '@/shared/ui/button';
 import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import useAuthUser from '@/entities/worker/hooks/useAuthUser/useAuthUser';
+import { useAuthUser } from '@/entities/worker';
 
 const FormSchema = z.object({
   username: z.string().email({
