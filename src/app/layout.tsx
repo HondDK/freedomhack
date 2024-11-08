@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Библиотека Гоголя',
-  description: 'Портал Гоголя',
+  title: 'FH',
+  description: 'FH',
 };
 
 export default function RootLayout({
