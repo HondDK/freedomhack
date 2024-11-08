@@ -1,8 +1,8 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query';
+import { TEditJobReqDto, TEditJobResDto, EDIT_JOB } from '@/entities/job/api';
 import { api } from '@/shared/api';
-import { EDIT_JOB, TEditJobReqDto, TEditJobResDto } from '@/entities/job/api';
 
 export function useEditJob() {
   const { mutate, data, isError, isSuccess, isPending } = useMutation({

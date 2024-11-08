@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query';
-import { GET_COMPANIES, TGetCompaniesResDto } from '@/entities/company/api';
+import { TGetCompaniesResDto, GET_COMPANIES } from '@/entities/company/api';
 import { api } from '@/shared/api';
 
 export function useGetCompanies() {

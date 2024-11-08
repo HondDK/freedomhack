@@ -1,0 +1,1 @@
+export { useDeleteJobCandidate } from './useDeleteJobCandidate'

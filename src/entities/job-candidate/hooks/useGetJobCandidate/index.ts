@@ -1,0 +1,1 @@
+export { useGetJobCandidate } from './useGetJobCandidate'

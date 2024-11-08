@@ -1,100 +1,100 @@
 
 interface IJobModel {
-  id: number;
-  title: string;
-  work_format: WorkFormat;
+  sub_work_direction: SubWorkDirection;
+  job_search_status: JobSearchStatus;
   work_experience: WorkExperience;
   work_direction: WorkDirection;
-  sub_work_direction: SubWorkDirection;
-  skills: Skill[];
-  company: Company;
-  department: Department;
-  country: Country;
-  city: City;
-  job_search_status: JobSearchStatus;
-  created: string;
-  modified: string;
-  name_kz: string;
-  name_ru: string;
-  name_en: string;
+  work_format: WorkFormat;
   description_kz?: string;
   description_ru?: string;
   description_en?: string;
+  department: Department;
+  company: Company;
+  country: Country;
+  modified: string;
+  skills: Skill[];
+  created: string;
+  name_kz: string;
+  name_ru: string;
+  name_en: string;
   creator: number;
+  title: string;
+  id: number;
+  city: City;
 }
 
 interface WorkFormat {
-  id: number;
   name_kz: string;
   name_ru: string;
   name_en: string;
+  id: number;
 }
 
 interface WorkExperience {
-  id: number;
   name_kz: string;
   name_ru: string;
   name_en: string;
+  id: number;
 }
 
 interface WorkDirection {
-  id: number;
   name_kz: string;
   name_ru: string;
   name_en: string;
+  id: number;
 }
 
 interface SubWorkDirection {
-  id: number;
   name_kz: string;
   name_ru: string;
   name_en: string;
+  id: number;
 }
 
 interface Skill {
-  id: number;
   name_kz: string;
   name_ru: string;
   name_en: string;
+  id: number;
 }
 
 interface Company {
-  id: number;
-  name: string;
   creator: Creator;
   logo?: string;
+  name: string;
+  id: number;
 }
 
 interface Creator {
-  id: number;
   name: string;
+  id: number;
 }
 
 interface Department {
-  id: number;
-  name: string;
   company: Company;
+  name: string;
+  id: number;
 }
 
 interface Country {
-  id: number;
-  cities: City[];
   name_kz: string;
   name_ru: string;
   name_en: string;
+  cities: City[];
+  id: number;
 }
 
 interface City {
-  id: number;
+  country: Country;
   name_kz: string;
   name_ru: string;
   name_en: string;
-  country: Country;
+  id: number;
 }
 
 interface JobSearchStatus {
-  id: number;
   name: string;
+  id: number;
 }
 
 
@@ -140,4 +140,3 @@ export type TEditJobResDto = IJobModel
 export type TDeleteJobReqDto = {
   id: number
 }
-

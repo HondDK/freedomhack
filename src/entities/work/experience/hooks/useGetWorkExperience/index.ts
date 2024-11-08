@@ -1,0 +1,1 @@
+export { useGetWorkExperience } from './useGetWorkExperience'

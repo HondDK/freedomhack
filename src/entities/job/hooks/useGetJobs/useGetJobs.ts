@@ -1,8 +1,8 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query';
+import { TGetJobsResDto, GET_JOBS } from '@/entities/job/api';
 import { api } from '@/shared/api';
-import { GET_JOBS, TGetJobsResDto } from '@/entities/job/api';
 
 export function useGetJobs() {
   const { data, isError, isSuccess, isPending } = useQuery({
