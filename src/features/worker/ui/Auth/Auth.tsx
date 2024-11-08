@@ -36,7 +36,7 @@ export function Auth(){
     },
   })
 
-  const [authUser, { isLoading }] = useAuthUser()
+  const { mutate: authUser,  isPending } = useAuthUser()
 
 
   function onSubmit(data: z.infer<typeof FormSchema>) {

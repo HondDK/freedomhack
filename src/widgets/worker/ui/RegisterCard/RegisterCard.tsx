@@ -11,9 +11,9 @@ export function RegisterCard(){
   const router = useRouter()
 
   const [step, setStep] = useState(0);
-  const [registerUserInit, { data, isLoading: initLoading, isSuccess: initSuccess } ] = useRegisterUserInit()
-  const [registerUserCode, { isLoading: codeLoading, isSuccess: codeSuccess }] = useRegisterUserCode(data?.uuid!)
-  const [registerUserFinish, { isLoading: finishLoading, isSuccess: finishSuccess }] = useRegisterUserFinish(data?.uuid!)
+  const { mutate: registerUserInit, data, isPending: initLoading, isSuccess: initSuccess }  = useRegisterUserInit()
+  const { mutate: registerUserCode, isPending: codeLoading, isSuccess: codeSuccess } = useRegisterUserCode(data?.uuid!)
+  const { mutate: registerUserFinish, isPending: finishLoading, isSuccess: finishSuccess } = useRegisterUserFinish(data?.uuid!)
 
   useEffect(() => {
     if(initSuccess){

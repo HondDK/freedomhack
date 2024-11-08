@@ -6,6 +6,5 @@ export function useRegisterUserInit() {
 	const { mutate, data, isError, isSuccess, isPending } = useMutation({
 		mutationFn: api.mutation<TRegisterUserInitReqDto, TRegisterUserInitResDto>(REGISTER_INIT),
 	});
-
 	return { mutate, data, isError, isSuccess, isPending };
 }

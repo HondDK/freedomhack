@@ -10,10 +10,5 @@ export function useRegisterUserCode(uuid: string) {
     mutationFn: api.mutation<TRegisterUserCodeReqDto, TRegisterUserCodeResDto>(REGISTER_CONFIRM, { params: { uuid } }),
   });
 
-  return [
-    (payload) => {
-      mutate(payload);
-    },
-    { data, isError, isPending, isSuccess }
-  ];
+  return { mutate, data, isError, isPending, isSuccess }
 }

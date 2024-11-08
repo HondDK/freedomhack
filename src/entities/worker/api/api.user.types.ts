@@ -15,9 +15,8 @@ export type TRegisterUserInitResDto = {
 
 export type TRegisterUserInitReqDto = {
 	email: string,
-	name: string,
-	address: string,
-	phone_number: string
+	tg_username: string,
+	full_name: string,
 }
 
 export type TRegisterUserCodeResDto = void
