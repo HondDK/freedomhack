@@ -1,0 +1,1 @@
+export { devtoolsOptions } from './devtoolsOptions';

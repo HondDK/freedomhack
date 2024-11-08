@@ -1,0 +1,11 @@
+export const MAX_WIDTH = '1264px';
+export const HOST = process.env.NEXT_PUBLIC_HOST ?? '';
+export const PAGE_SIZE = 20;
+export const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
+export const SHORT_DATE_FORMAT = 'YYYY-MM-DD';
+export const SHORT_DATE_FORMAT_LOCALE = 'DD.MM.YYYY';
+export const KZ_PHONE_NUMBER_MASK = '+7 (999) 999 99 99';
+export const INPUT_DELAY = 1500;
+export const DEV_MODE = process.env.NODE_ENV === 'development';
+export const STALE_TIME = 600 * 1000;
+export const TOKEN_KEY = 'session';

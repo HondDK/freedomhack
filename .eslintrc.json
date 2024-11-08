@@ -1,0 +1,56 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "perfectionist"
+  ],
+  "extends": [
+    "next",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:perfectionist/recommended-line-length",
+    "@feature-sliced"
+  ],
+  "ignorePatterns": ["build", "next.config.js"],
+  "rules": {
+    "import/no-internal-modules": "off",
+    "perfectionist/sort-imports": "off",
+    "perfectionist/sort-object-types": "off",
+    "perfectionist/sort-enums": "off",
+    "perfectionist/sort-union-types": "off",
+    "perfectionist/sort-objects": [
+      "off",
+      {
+        "type": "natural",
+        "order": "asc"
+      }
+    ],
+    "indent": [
+      "warn",
+      2
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "comma-spacing": [
+      "warn",
+      {
+        "before": false,
+        "after": true
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  }
+}
