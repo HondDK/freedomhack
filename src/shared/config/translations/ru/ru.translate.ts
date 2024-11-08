@@ -1,0 +1,23 @@
+import { AUTH_TRANSLATIONS } from './(non-authorized)';
+import {
+  COPY_TEXT_TRANSLATIONS,
+  BUTTON_TRANSLATIONS,
+  INPUT_TRANSLATIONS,
+  ERROR_TRANSLATIONS,
+  MAIN_TRANSLATIONS,
+  MENU_TRANSLATIONS,
+  DAYS_TRANSLATIONS,
+  apiErrors
+} from './global';
+
+export default {
+  days: DAYS_TRANSLATIONS,
+  button: BUTTON_TRANSLATIONS,
+  copyText: COPY_TEXT_TRANSLATIONS,
+  error: ERROR_TRANSLATIONS,
+  input: INPUT_TRANSLATIONS,
+  main: MAIN_TRANSLATIONS,
+  menu: MENU_TRANSLATIONS,
+  auth: AUTH_TRANSLATIONS,
+  ...apiErrors,
+} as const
