@@ -1,0 +1,1 @@
+export { useEditDepartament } from './useEditDepartament'

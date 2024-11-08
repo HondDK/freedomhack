@@ -1,0 +1,1 @@
+export { useGetDepartament } from './useGetDepartament'

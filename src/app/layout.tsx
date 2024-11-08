@@ -28,18 +28,18 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-      <GuardProvider>
-        <QueryProvider>
-          <ThemeProvider
-            disableTransitionOnChange
-            defaultTheme="system"
-            attribute="class"
-            enableSystem
-          >
-            {children}
-          </ThemeProvider>
-        </QueryProvider>
-      </GuardProvider>
+        <GuardProvider>
+          <QueryProvider>
+            <ThemeProvider
+              disableTransitionOnChange
+              defaultTheme="system"
+              attribute="class"
+              enableSystem
+            >
+              {children}
+            </ThemeProvider>
+          </QueryProvider>
+        </GuardProvider>
       </body>
     </html>
   );

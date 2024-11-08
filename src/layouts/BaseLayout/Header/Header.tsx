@@ -1,5 +1,6 @@
 'use client'
 
+import { deleteCookie } from 'cookies-next';
 import {
   CircleUser,
   Search,
@@ -18,7 +19,6 @@ import {
 } from '@/shared/ui/dropdown-menu'
 import { Input } from '@/shared/ui/input';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet'
-import { deleteCookie } from 'cookies-next';
 
 
 export function Header() {

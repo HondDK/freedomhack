@@ -23,22 +23,18 @@ export const api: ApiInterface = {
     const token = getCookie('authToken');
     const url = HOST + replaceTemplate(path, params ?? {}) + (query ? createQueryString(query) : '');
 
-    const response = await fetch(url, {
+    const response = await axios({
+      url,
       method,
+      data: body,
       headers: {
         ...(token && { Authorization: `Bearer ${token}` }),
         'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
+      }
+    },);
 
-    if (!response.ok) {
-      throw new Error(`Error: ${response.statusText}`);
-    }
-
-    return response.json() as TResult;
+    return response.data
   },
-
   mutation: <Req, TResult>(
     endpoint: TEndpoint,
     payload: TPayload<Req> = {}
@@ -47,11 +43,8 @@ export const api: ApiInterface = {
     const { query, params } = payload;
 
     return async (data: Req | undefined) => {
-      console.log(data);
       const token = getCookie('authToken');
-      console.log(HOST);
       const url = HOST + replaceTemplate(path, params ?? {}) + (query ? createQueryString(query) : '');
-      console.log(url);
       const response = await axios({
         url,
         method,
@@ -61,7 +54,6 @@ export const api: ApiInterface = {
           'Content-Type': 'application/json',
         },
       });
-      console.log(response);
 
       return response.data as TResult;
     };

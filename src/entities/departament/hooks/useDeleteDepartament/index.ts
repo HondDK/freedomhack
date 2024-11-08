@@ -1,0 +1,1 @@
+export { useDeleteDepartament } from './useDeleteDepartament'
