@@ -1,7 +1,7 @@
 import {
   CircleUser,
-  LibraryBig,
-  Search, Menu
+  Search,
+  Menu
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
@@ -15,6 +15,7 @@ import {
 } from '@/shared/ui/dropdown-menu'
 import { Input } from '@/shared/ui/input';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet'
+import { ScanEye } from 'lucide-react';
 
 export function Header() {
   return <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -24,7 +25,7 @@ export function Header() {
         className="flex items-center gap-2 text-lg font-semibold md:text-base"
         href="#"
       >
-        <LibraryBig className="h-6 w-6"/>
+        <ScanEye className="h-6 w-6"/>
       </Link>
       <Link
         className="text-foreground transition-colors hover:text-foreground"
