@@ -1,4 +1,3 @@
-import { AUTH_TRANSLATIONS } from './(non-authorized)';
 import {
   COPY_TEXT_TRANSLATIONS,
   BUTTON_TRANSLATIONS,
@@ -7,6 +6,7 @@ import {
   MAIN_TRANSLATIONS,
   MENU_TRANSLATIONS,
   DAYS_TRANSLATIONS,
+  AUTH_TRANSLATIONS,
   apiErrors
 } from './global';
 
