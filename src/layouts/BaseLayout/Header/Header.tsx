@@ -1,8 +1,11 @@
+'use client'
+
 import {
   CircleUser,
   Search,
   Menu
 } from 'lucide-react';
+import { ScanEye } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
 import {
@@ -15,7 +18,9 @@ import {
 } from '@/shared/ui/dropdown-menu'
 import { Input } from '@/shared/ui/input';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet'
-import { ScanEye } from 'lucide-react';
+import { deleteSession } from '@/shared/lib/deleteSession/deleteSession';
+import { deleteCookie } from 'cookies-next';
+
 
 export function Header() {
   return <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
@@ -97,7 +102,7 @@ export function Header() {
           <DropdownMenuSeparator/>
           <DropdownMenuItem>Настройки</DropdownMenuItem>
           <DropdownMenuSeparator/>
-          <DropdownMenuItem>Выйти с аккаунта</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => deleteCookie('authToken')}>Выйти с аккаунта</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>

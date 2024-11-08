@@ -4,10 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { TRegisterUserInitReqDto } from '@/entities/worker/api';
 import { Button } from '@/shared/ui/button';
 import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { TRegisterUserInitReqDto } from '@/entities/worker/api';
 
 const FormSchema = z.object({
   email: z.string().email({

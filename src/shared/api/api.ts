@@ -1,7 +1,7 @@
+import axios from 'axios';
 import { getCookie } from 'cookies-next';
 import type { TEndpoint, TPayload } from './api.types';
 import { createQueryString, replaceTemplate } from './api.utils';
-import axios from 'axios';
 
 const HOST = process.env.NEXT_PUBLIC_HOST;
 

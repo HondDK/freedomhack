@@ -2,7 +2,7 @@
 
 
 import { useMutation } from '@tanstack/react-query';
-import { REGISTER_CONFIRM, TRegisterUserCodeReqDto, TRegisterUserCodeResDto } from '@/entities/worker';
+import { TRegisterUserCodeReqDto, TRegisterUserCodeResDto, REGISTER_CONFIRM } from '@/entities/worker';
 import { api } from '@/shared/api';
 
 export function useRegisterUserCode(uuid: string) {

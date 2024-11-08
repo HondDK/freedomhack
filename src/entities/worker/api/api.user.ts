@@ -14,11 +14,11 @@ export const REGISTER_INIT: TEndpoint = {
 export const REGISTER_CONFIRM: TEndpoint = {
   method: 'POST',
   host: 'default',
-  path: `registration/registration/{{uuid}}/confirm_email/`
+  path: 'registration/registration/{{uuid}}/confirm_email/'
 }
 
 export const REGISTER_FINISH: TEndpoint = {
   method: 'POST',
   host: 'default',
-  path: `registration/registration/{{uuid}}/finish/`
+  path: 'registration/registration/{{uuid}}/finish/'
 }

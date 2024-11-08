@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react';
-import { RegisterOTP, Register, RegisterFinish } from '@/features/worker/ui';
-import { CardDescription, CardHeader, CardTitle, Card } from '@/shared/ui/card';
-import { useRegisterUserFinish, useRegisterUserCode, useRegisterUserInit } from '@/entities/worker/hooks';
-import { useRouter } from 'next/navigation';
-import { LoadingSpinner } from '@/shared/ui/LoadingSpiner';
 import { getCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { RegisterFinish, RegisterOTP, Register } from '@/features/worker/ui';
+import { useRegisterUserFinish, useRegisterUserCode, useRegisterUserInit } from '@/entities/worker/hooks';
+import { CardDescription, CardHeader, CardTitle, Card } from '@/shared/ui/card';
+import { LoadingSpinner } from '@/shared/ui/LoadingSpiner';
 
 export function RegisterCard(){
   const router = useRouter()
@@ -47,8 +47,8 @@ export function RegisterCard(){
       </CardDescription>}
     </CardHeader>
     {isLoading && <LoadingSpinner className={'w-full max-w-sm space-y-3 p-6'} size={108} />}
-    {step === 0 && !isLoading && <Register loading={initLoading} registerUserInit={registerUserInit}/>}
-    {step === 1 && !isLoading && <RegisterOTP loading={codeLoading} registerUserCode={registerUserCode} />}
-    {step === 2 && !isLoading && <RegisterFinish loading={finishLoading} registerUserFinish={registerUserFinish}/>}
+    {step === 0 && !isLoading && <Register registerUserInit={registerUserInit} loading={initLoading}/>}
+    {step === 1 && !isLoading && <RegisterOTP registerUserCode={registerUserCode} loading={codeLoading} />}
+    {step === 2 && !isLoading && <RegisterFinish registerUserFinish={registerUserFinish} loading={finishLoading}/>}
   </Card>
 }

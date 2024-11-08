@@ -1,15 +1,15 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { getCookie } from 'cookies-next';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useAuthUser } from '@/entities/worker';
 import { Button } from '@/shared/ui/button';
 import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { useAuthUser } from '@/entities/worker';
-import { useRouter } from 'next/navigation';
-import { getCookie } from 'cookies-next';
 
 const FormSchema = z.object({
   username: z.string().email({

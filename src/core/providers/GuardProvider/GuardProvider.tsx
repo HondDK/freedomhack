@@ -1,19 +1,32 @@
-import { PropsWithChildren, useLayoutEffect } from 'react';
+'use client'
+
+import { getCookie } from 'cookies-next';
 import { usePathname, useRouter } from 'next/navigation';
+import { PropsWithChildren, useEffect } from 'react';
+import { LoadingSpinner } from '@/shared/ui/LoadingSpiner';
 
 export default function GuardProvider(props: PropsWithChildren) {
   const { children } = props;
-
   const router = useRouter();
   const pathname = usePathname();
+  const token = getCookie('authToken');
 
-  // useLayoutEffect(() => {
-  //   if (!isAuthorized) {
-  //     router.push('');
-  //     return;
-  //   }
-  // }, [isAuthorized, pathname, router]);
+  useEffect(() => {
+    if (token && (pathname === '/auth' || pathname === '/registration')) {
+      router.push('/');
+    }
+    if (!token && pathname !== '/auth' && pathname !== '/registration') {
+      router.push('/auth');
+    }
+  }, [token, pathname, router]);
 
+  const condition =
+    (token && (pathname === '/auth' || pathname === '/registration')) ||
+    (!token && pathname !== '/auth' && pathname !== '/registration');
 
-  return children;
+  if (condition) {
+    return <LoadingSpinner />;
+  }
+
+  return <>{children}</>;
 }
