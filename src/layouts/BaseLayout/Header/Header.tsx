@@ -18,7 +18,6 @@ import {
 } from '@/shared/ui/dropdown-menu'
 import { Input } from '@/shared/ui/input';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet'
-import { deleteSession } from '@/shared/lib/deleteSession/deleteSession';
 import { deleteCookie } from 'cookies-next';
 
 
