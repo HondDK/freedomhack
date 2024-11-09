@@ -17,10 +17,11 @@ interface IJobCandidateModel {
 export type TGetJobCandidatesResDto = IJobCandidateModel[]
 
 export type TCreateJobCandidateReqDto = {
-  job: number,
-  full_name: string,
-  email: string,
-  phone_number: string
+  job?: number,
+  full_name?: string,
+  email?: string,
+  phone_number?: string
+  cv_file?: string
 }
 
 export type TCreateJobCandidateResDto = IJobCandidateModel

@@ -1,0 +1,1 @@
+export { JobVacancyRespond } from './JobVacancyRespond'

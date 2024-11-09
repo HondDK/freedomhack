@@ -1,7 +1,7 @@
 'use client'
 
-import { IJobModel } from '@/entities/job/api';
 import { useRouter } from 'next/navigation';
+import { IJobModel } from '@/entities/job/api';
 
 type TProps = {
   data: IJobModel;
@@ -16,7 +16,7 @@ export function JobCard(props: TProps) {
   }
 
   return (
-    <div onClick={handleClickOnCard} className="p-3 sm:p-4 bg-white border rounded-lg shadow-md flex flex-col gap-3 sm:gap-4 mt-3 mb-3">
+    <div className="p-3 sm:p-4 bg-white border rounded-lg shadow-md flex flex-col gap-3 sm:gap-4 mt-3 mb-3 hover:cursor-pointer" onClick={handleClickOnCard}>
       <div className="flex items-center gap-3 sm:gap-4">
         {data.company.logo && (
           <img
