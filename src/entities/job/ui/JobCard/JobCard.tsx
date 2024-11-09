@@ -12,7 +12,7 @@ export function JobCard(props: TProps) {
   const router = useRouter()
 
   const handleClickOnCard = () => {
-    router.replace(`/vacancy/${data.id}`)
+    router.push(`/vacancy/${data.id}`)
   }
 
   return (

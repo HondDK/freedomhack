@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { VacancyAdditionalDetails } from '@/widgets/job/ui';
 import { JobVacancyRespond } from '@/features/job/ui';
 import { useGetJob } from '@/entities/job/hooks/useGetJob';
-import { Button } from '@/shared/ui/button'; // Assuming a reusable Button component exists
+import { Button } from '@/shared/ui/button';
 import { Skeleton } from '@/shared/ui/skeleton';
 
 type TProps = {
@@ -29,7 +29,7 @@ export function VacancyPage(props: TProps) {
   return (
     <div className="w-full px-4 py-4 mt-4 flex flex-col gap-6 lg:flex-row lg:gap-8">
       <div className="lg:w-2/3">
-        <Button onClick={() => router.back()} className="mb-4">
+        <Button onClick={() => router.back()} variant={'outline'} className="mb-4">
           Назад
         </Button>
         <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
