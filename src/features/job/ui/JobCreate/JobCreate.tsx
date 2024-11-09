@@ -6,18 +6,18 @@ import { getQueryClient } from '@/app/get-query-client';
 import { CompanySelect } from '@/entities/company/ui';
 import { DepartamentSelect } from '@/entities/departament/ui';
 import { JobSearchStatusSelect } from '@/entities/job';
-import { TCreateJobReqDto, GET_JOBS, TGetJobsReqDto } from '@/entities/job/api';
+import { TCreateJobReqDto, TGetJobsReqDto, GET_JOBS } from '@/entities/job/api';
 import { useCreateJob } from '@/entities/job/hooks/useCreateJob';
 import { CountrySelect } from '@/entities/location/ui';
 import { SkillMultiSelect } from '@/entities/skill';
+import { DirectionSelect } from '@/entities/work/direction/ui/DirectionSelect';
+import { ExperienceSelect } from '@/entities/work/experience/ui';
 import { FormatSelect } from '@/entities/work/format/ui';
 import { Button } from '@/shared/ui/button';
+import { DialogTrigger, DialogContent, DialogFooter, DialogHeader, DialogClose, Dialog } from '@/shared/ui/dialog';
 import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { Textarea } from "@/shared/ui/textarea";
-import { DialogTrigger, DialogContent, DialogFooter, DialogHeader, DialogClose, Dialog } from '@/shared/ui/dialog';
-import { ExperienceSelect } from '@/entities/work/experience/ui';
-import { DirectionSelect } from '@/entities/work/direction/ui/DirectionSelect';
+import { Textarea } from '@/shared/ui/textarea';
 
 const JobFormSchema = z.object({
   name_kz: z.string().min(1, 'Название на казахском обязательно').max(255),
@@ -43,7 +43,35 @@ const JobFormSchema = z.object({
 
 type JobFormFields = keyof z.infer<typeof JobFormSchema>;
 
-const fieldsConfig: Array<{ name: JobFormFields; label: string; placeholder: string; component: React.ComponentType<any> }> = [
+type InputComponentProps = React.ComponentProps<typeof Input>;
+type TextareaComponentProps = React.ComponentProps<typeof Textarea>;
+type FormatSelectComponentProps = React.ComponentProps<typeof FormatSelect>;
+type ExperienceSelectComponentProps = React.ComponentProps<typeof ExperienceSelect>;
+type DirectionSelectComponentProps = React.ComponentProps<typeof DirectionSelect>;
+type CompanySelectComponentProps = React.ComponentProps<typeof CompanySelect>;
+type DepartmentSelectComponentProps = React.ComponentProps<typeof DepartamentSelect>;
+type JobSearchStatusSelectComponentProps = React.ComponentProps<typeof JobSearchStatusSelect>;
+type CountrySelectComponentProps = React.ComponentProps<typeof CountrySelect>;
+type SkillMultiSelectComponentProps = React.ComponentProps<typeof SkillMultiSelect>;
+
+type FieldsConfigType = {
+  name: JobFormFields;
+  label: string;
+  placeholder: string;
+  component:
+    | React.ComponentType<InputComponentProps>
+    | React.ComponentType<TextareaComponentProps>
+    | React.ComponentType<FormatSelectComponentProps>
+    | React.ComponentType<ExperienceSelectComponentProps>
+    | React.ComponentType<DirectionSelectComponentProps>
+    | React.ComponentType<CompanySelectComponentProps>
+    | React.ComponentType<DepartmentSelectComponentProps>
+    | React.ComponentType<JobSearchStatusSelectComponentProps>
+    | React.ComponentType<CountrySelectComponentProps>
+    | React.ComponentType<SkillMultiSelectComponentProps>;
+};
+
+const fieldsConfig: Array<FieldsConfigType> = [
   { name: 'name_kz', label: 'Қазақша атауы', placeholder: 'Вакансияның атауы', component: Input },
   { name: 'name_ru', label: 'Название на русском', placeholder: 'Название', component: Input },
   { name: 'name_en', label: 'Name in English', placeholder: 'Job name in English', component: Input },
@@ -100,8 +128,9 @@ export function JobCreate({ filters }: TProps) {
       setIsOpen(false);
       queryClient.invalidateQueries({ queryKey: [GET_JOBS, filters], type: 'all' });
     }
-  }, [isSuccess]);
+  }, [filters, isSuccess, queryClient]);
 
+  // @ts-ignore
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
@@ -121,7 +150,9 @@ export function JobCreate({ filters }: TProps) {
                   <FormItem>
                     <FormLabel>{label}</FormLabel>
                     <FormControl>
-                      <Component placeholder={placeholder} {...field} />
+                      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                      {/*// @ts-ignore*/}
+                      <Component placeholder={placeholder as string} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
