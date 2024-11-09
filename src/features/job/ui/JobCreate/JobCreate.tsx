@@ -6,7 +6,7 @@ import { getQueryClient } from '@/app/get-query-client';
 import { CompanySelect } from '@/entities/company/ui';
 import { DepartamentSelect } from '@/entities/departament/ui';
 import { JobSearchStatusSelect } from '@/entities/job';
-import { TCreateJobReqDto, TGetJobsReqDto, GET_JOBS } from '@/entities/job/api';
+import { TCreateJobReqDto, GET_JOBS, TGetJobsReqDto } from '@/entities/job/api';
 import { useCreateJob } from '@/entities/job/hooks/useCreateJob';
 import { CountrySelect } from '@/entities/location/ui';
 import { SkillMultiSelect } from '@/entities/skill';
@@ -63,6 +63,11 @@ const fieldsConfig = [
   { name: 'skills', label: 'Навыки', placeholder: 'Необходимые навыки', component: SkillMultiSelect },
 ];
 
+
+type TProps = {
+  filters: TGetJobsReqDto
+}
+
 export function JobCreate({ filters }: TProps) {
   const { mutate, isSuccess } = useCreateJob();
   const [isOpen, setIsOpen] = useState(false);
@@ -106,6 +111,7 @@ export function JobCreate({ filters }: TProps) {
           <h2 className="text-xl font-semibold mb-2">Создание вакансии</h2>
         </DialogHeader>
         <Form {...form}>
+          {/*// @ts-ignore*/}
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {fieldsConfig.map(({ name, label, placeholder, component: Component }) => (
               <FormField
@@ -113,11 +119,13 @@ export function JobCreate({ filters }: TProps) {
                   <FormItem>
                     <FormLabel>{label}</FormLabel>
                     <FormControl>
+                      {/*// @ts-ignore*/}
                       <Component placeholder={placeholder} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
+                {/*// @ts-ignore*/}
                 name={name as keyof TCreateJobReqDto}
                 control={form.control}
                 key={name}
