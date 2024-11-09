@@ -1,0 +1,1 @@
+export { useCompareJobCandidate } from './useCompareJobCandidate'

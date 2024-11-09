@@ -17,6 +17,15 @@ export type TGetCompanyReqDto = {
   id: number
 }
 
+export type TCompareJobCandidateReqDto = {
+  job_id: number,
+  job_candidate_id: number
+}
+
+export type TCompareJobCandidateResDto = {
+  similarity: number
+}
+
 export type TGetCompanyResDto = ICompanyModel
 
 export type TEditCompanyReqDto = ICompanyModel

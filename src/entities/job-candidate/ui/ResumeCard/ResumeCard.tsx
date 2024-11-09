@@ -1,14 +1,17 @@
 'use client'
 
 import { IJobCandidateModel } from '@/entities/job-candidate/api';
+// eslint-disable-next-line boundaries/element-types
+import { CompareJobCandidate } from '@/features/job/ui';
 
 type TProps = {
   data: IJobCandidateModel;
+  inVacancy?: boolean,
+  jobId?: number
 };
 
 export function ResumeCard(props: TProps) {
-  const { data } = props;
-
+  const { data, inVacancy, jobId } = props;
 
   return (
     <div
@@ -53,6 +56,7 @@ export function ResumeCard(props: TProps) {
           ))}
         </div>
       )}
+      {inVacancy && <CompareJobCandidate job_candidate_id={data.id} job_id={jobId!}/>}
 
       {data.cv_file && (
         <div className="mt-3">

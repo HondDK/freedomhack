@@ -1,0 +1,1 @@
+export { CompareJobCandidate } from './CompareJobCandidate'

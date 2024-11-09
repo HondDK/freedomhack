@@ -24,3 +24,8 @@ export const DELETE_COMPANY: TEndpoint = {
   method: 'DELETE',
   path: 'company/company/{{id}}/'
 }
+
+export const COMPARE_JOB_CANDIDATE : TEndpoint = {
+  method: 'POST',
+  path: 'job/job/compare-job-candidate/'
+}

@@ -21,22 +21,22 @@ export function VacancyPage(props: TProps) {
   const { data, isPending } = useGetJob(Number(id));
 
   const { data: candidateData, isPending: candidateLoading } = useGetJobCandidates({
-    skills: data?.skills.map((skill) => skill.id),
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    cities: data?.city.id,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    countries: data?.country.id,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    sub_work_directions: data?.sub_work_direction.id,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    work_direction: data?.work_direction.id,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    work_experiences: data?.work_direction.id
+    // skills: data?.skills.map((skill) => skill.id),
+    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // // @ts-expect-error
+    // cities: data?.city.id,
+    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // // @ts-expect-error
+    // countries: data?.country.id,
+    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // // @ts-expect-error
+    // sub_work_directions: data?.sub_work_direction.id,
+    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // // @ts-expect-error
+    // work_direction: data?.work_direction.id,
+    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // // @ts-expect-error
+    // work_experiences: data?.work_direction.id
   })
 
   if (isPending) {
@@ -99,7 +99,7 @@ export function VacancyPage(props: TProps) {
       {candidateLoading && <p className="text-center mt-4">Загрузка...</p>}
       {candidateData?.map((resume) => (
         <div className="min-w-[200px]" key={resume.id}>
-          <ResumeCard data={resume}/>
+          <ResumeCard jobId={data.id} data={resume} inVacancy/>
         </div>
       ))}
     </div>
