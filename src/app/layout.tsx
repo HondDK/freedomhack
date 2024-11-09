@@ -28,8 +28,8 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <GuardProvider>
-          <QueryProvider>
+        <QueryProvider>
+          <GuardProvider>
             <ThemeProvider
               disableTransitionOnChange
               defaultTheme="system"
@@ -38,8 +38,8 @@ export default function RootLayout({
             >
               {children}
             </ThemeProvider>
-          </QueryProvider>
-        </GuardProvider>
+          </GuardProvider>
+        </QueryProvider>
       </body>
     </html>
   );
