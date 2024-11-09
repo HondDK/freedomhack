@@ -19,7 +19,7 @@ export type TGetCompanyReqDto = {
 
 export type TGetCompanyResDto = ICompanyModel
 
-export type TEditCompanyReqDto = Omit<ICompanyModel, 'id'>
+export type TEditCompanyReqDto = ICompanyModel
 
 export type TEditCompanyResDto = ICompanyModel
 
