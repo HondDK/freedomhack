@@ -105,9 +105,9 @@ export type TGetJobsReqDto = {
   work_direction?: number[],
   work_experience?: number[],
   sub_work_direction?: number[],
-  skills?: string,
+  skills?: number[],
   company?: string
-  country?: string,
+  country?: number[],
   city?: string,
   search?: string
 }

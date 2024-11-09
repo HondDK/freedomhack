@@ -1,1 +1,1 @@
-export { DirectionFilters } from './DirectionFilters'
+export { DirectionFilters } from './FormatFilters'
