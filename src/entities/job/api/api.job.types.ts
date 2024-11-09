@@ -1,5 +1,5 @@
 
-interface IJobModel {
+export interface IJobModel {
   sub_work_direction: SubWorkDirection;
   job_search_status: JobSearchStatus;
   work_experience: WorkExperience;
