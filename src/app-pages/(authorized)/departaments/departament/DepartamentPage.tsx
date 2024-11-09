@@ -61,13 +61,6 @@ export function DepartamentPage({ id }: TProps) {
       </Button>
       <Card className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
-          {data.logo ? (
-            <img className="w-20 h-20 md:w-24 md:h-24 mb-4 object-contain mx-auto" alt={`${data.name} logo`} src={data.logo} />
-          ) : (
-            <div className="w-20 h-20 md:w-24 md:h-24 mb-4 bg-gray-200 rounded-full flex items-center justify-center">
-              <span className="text-gray-500 text-sm md:text-lg">No Logo</span>
-            </div>
-          )}
           {isEditing ? (
             <Input
               onChange={(e) => setDepartamentName(e.target.value)}

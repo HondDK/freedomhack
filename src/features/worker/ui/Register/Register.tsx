@@ -1,95 +1,71 @@
-'use client';
+'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
-import { useForm, } from 'react-hook-form';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { TRegisterUserInitReqDto } from '@/entities/worker/api';
 import { Button } from '@/shared/ui/button';
-import { FormControl, FormMessage, FormField, FormItem, Form } from '@/shared/ui/form';
+import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
-import { Label } from '@/shared/ui/label';
 
 const FormSchema = z.object({
-  full_name: z.string().min(1, {
-    message: 'ФИО обязательно.',
-  }),
   email: z.string().email({
     message: 'Введите корректный адрес электронной почты.',
   }).min(1, {
-    message: 'Email обязателен.',
+    message: 'Электронная почта обязательна.',
   }),
-  phone_number: z.string().min(1, {
-    message: 'Номер телефона обязателен.',
+  full_name: z.string().min(1, {
+    message: 'ФИО обязательно.',
   }),
-  cv_file: z.any().refine((fileList) => fileList && fileList.length > 0, {
-    message: 'Резюме обязательно.',
+  tg_username: z.string().min(1, {
+    message: 'Имя в тг обязательно.',
   }),
 });
 
-type FormData = z.infer<typeof FormSchema>;
 
-type TJobApplicationFormProps = {
-  jobId: number;
-};
+export function Register(props : {  registerUserInit: (payload: TRegisterUserInitReqDto) => void; loading: boolean }) {
+  const { registerUserInit, loading } = props
 
-export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
-  const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
-
-  const form = useForm<FormData>({
+  const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      full_name: '',
       email: '',
-      phone_number: '',
-      cv_file: null,
+      full_name: '',
+      tg_username: '',
     },
   });
 
-  const onSubmit = async (data: FormData) => {
-    const formData = new FormData();
-    formData.append('job', jobId.toString());
-    formData.append('full_name', data.full_name);
-    formData.append('email', data.email);
-    formData.append('phone_number', data.phone_number);
-    if (data.cv_file && data.cv_file[0]) {
-      formData.append('cv_file', data.cv_file[0]);
-    }
-
-    try {
-      const response = await fetch('/api/apply', {
-        method: 'POST',
-        body: formData,
-      });
-
-      setSubmissionStatus(response.ok ? 'Форма успешно отправлена.' : 'Ошибка при отправке формы.');
-    } catch (error) {
-      console.error('Ошибка отправки формы:', error);
-      setSubmissionStatus('Ошибка при отправке формы.');
-    }
-  };
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    registerUserInit({
+      email: data.email,
+      full_name: data.full_name,
+      tg_username: data.tg_username
+    })
+  }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form className="w-full max-w-sm space-y-3 p-6" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           render={({ field }) => (
             <FormItem>
-              <Label htmlFor="full_name">ФИО</Label>
+              <FormLabel>Имя в телеграмме</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Введите ваше ФИО" id="full_name" />
+                <Input placeholder="@honddk" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
           control={form.control}
-          name="full_name"
+          name="tg_username"
         />
         <FormField
           render={({ field }) => (
             <FormItem>
-              <Label htmlFor="email">Email</Label>
+              <FormLabel>Ваша почта</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Введите ваш email" type="email" id="email" />
+                <Input placeholder="Email" type="email" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -100,43 +76,25 @@ export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
         <FormField
           render={({ field }) => (
             <FormItem>
-              <Label htmlFor="phone_number">Номер телефона</Label>
+              <FormLabel>Ваше ФИО</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="Введите ваш номер телефона" id="phone_number" />
+                <Input placeholder="Бобер Боберович Бобрик" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
           control={form.control}
-          name="phone_number"
+          name="full_name"
         />
-        <FormField
-          render={({ field }) => (
-            <FormItem>
-              <Label htmlFor="cv_file">Резюме (CV)</Label>
-              <FormControl>
-                <input
-                  onChange={(e) => field.onChange(e.target.files)}
-                  accept=".pdf,.doc,.docx"
-                  id="cv_file"
-                  type="file"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-          control={form.control}
-          name="cv_file"
-        />
-        <Button disabled={form.formState.isSubmitting} type="submit">
-          {form.formState.isSubmitting ? 'Отправка...' : 'Откликнуться на вакансию'}
-        </Button>
-        {submissionStatus && (
-          <p className={`mt-2 text-sm ${submissionStatus === 'Форма успешно отправлена.' ? 'text-green-600' : 'text-red-600'}`}>
-            {submissionStatus}
-          </p>
-        )}
+        <div className="flex justify-between">
+          <Button disabled={loading} type="submit">Зарегистрироваться</Button>
+          <Link href="/auth">
+            <Button variant="ghost">Войти</Button>
+          </Link>
+        </div>
       </form>
     </Form>
   );
 }
+
+
