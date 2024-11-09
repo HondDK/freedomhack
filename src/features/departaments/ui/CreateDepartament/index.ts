@@ -1,0 +1,1 @@
+export { CreateDepartament } from './CreateDepartament'

@@ -1,0 +1,1 @@
+export { CreateDepartamentModal } from './ui'
