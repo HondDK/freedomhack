@@ -13,10 +13,10 @@ build_base:
   script:
     - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin
     - docker build -t $CI_REGISTRY_IMAGE:base . -f docker/base/Dockerfile
-    - docker push $CI_REGISTRY_IMAGE:base $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:base
   only:
     refs:
-      - feat/deploy
+      - master
     changes:
       - docker/base/Dockerfile
       - package.json
@@ -30,9 +30,9 @@ build_app:
   script:
     - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin
     - docker build -t $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID . -f docker/app/Dockerfile
-    - docker push $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID
   only:
-    - feat/deploy
+    - master
 
 
 deploy_prod:
@@ -45,4 +45,4 @@ deploy_prod:
     - sed -i "s/<VERSION>/${CI_PIPELINE_ID}/g" ./k8s/deployment-prod.yaml
     - kubectl apply -f ./k8s/deployment-prod.yaml
   only:
-    - feat/deploy
+    - master
