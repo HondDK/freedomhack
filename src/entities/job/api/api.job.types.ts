@@ -23,7 +23,7 @@ export interface IJobModel {
   city: City;
 }
 
-interface WorkFormat {
+ interface WorkFormat {
   name_kz: string;
   name_ru: string;
   name_en: string;

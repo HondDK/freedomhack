@@ -55,7 +55,7 @@ export function Header() {
         className="text-muted-foreground transition-colors hover:text-foreground"
         href="#"
       >
-        Анализ вакансии
+        База резюме
       </Link>
     </nav>
     <Sheet>
