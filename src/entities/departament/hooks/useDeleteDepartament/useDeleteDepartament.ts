@@ -6,7 +6,9 @@ import { api } from '@/shared/api';
 
 export function useDeleteDepartament() {
   const { mutate, data, isError, isSuccess, isPending } = useMutation({
-    mutationFn: api.mutation<TDeleteDepartamentReqDto, void>(DELETE_DEPARTAMENT),
+        mutationFn: (variables: TDeleteDepartamentReqDto) => api.mutation<TDeleteDepartamentReqDto, void>(DELETE_DEPARTAMENT, {
+          params: { id: Number(variables.id) },
+        })(variables),
   });
 
   return { mutate, data, isError, isSuccess, isPending };

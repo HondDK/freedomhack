@@ -12,7 +12,6 @@ export function useDeleteCompany() {
     mutationFn: (variables: TDeleteCompanyReqDto) => api.mutation<TDeleteCompanyReqDto, void>(DELETE_COMPANY, {
       params: { id: Number(variables.id) },
     })(variables),
-
   });
 
   return { mutate, data, isError, isSuccess, isPending };

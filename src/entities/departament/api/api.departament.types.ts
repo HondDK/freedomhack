@@ -1,6 +1,11 @@
 
 interface IDepartamentModel {
-  company: number
+  company: {
+    id: number,
+    name: string,
+    creator: number,
+    logo: string
+  }
   name: string,
   id: number,
 }
@@ -19,7 +24,11 @@ export type TGetDepartamentReqDto = {
 
 export type TGetDepartamentResDto = IDepartamentModel
 
-export type TEditDepartamentReqDto = IDepartamentModel
+export type TEditDepartamentReqDto = {
+  id: number,
+  name: string,
+  company: number
+}
 
 export type TEditDepartamentResDto = IDepartamentModel
 

@@ -9,6 +9,7 @@ import { Button } from '@/shared/ui/button';
 import { CardFooter, CardHeader, Card } from '@/shared/ui/card';
 import { Input } from '@/shared/ui/input';
 import { Skeleton } from '@/shared/ui/skeleton';
+import { CompanySelect } from '@/entities/company/ui';
 
 type TProps = {
   id: string;
@@ -17,33 +18,28 @@ type TProps = {
 export function DepartamentPage({ id }: TProps) {
   const router = useRouter();
   const { data, isPending } = useGetDepartament(Number(id));
-  const { mutate: editCompany, isSuccess: successEdit } = useEditDepartament();
-  const { mutate: deleteCompany, isSuccess: successDelete } = useDeleteDepartament();
+  const { mutate: editDepartament, isSuccess: successEdit } = useEditDepartament();
+  const { mutate: deleteDepartament, isSuccess: successDelete } = useDeleteDepartament();
   const [isEditing, setIsEditing] = useState(false);
   const [departamentName, setDepartamentName] = useState(data?.name || '');
+  const [companyId, setCompanyId] = useState<number>(data?.company.id || 0);
 
   const handleEdit = () => {
-    editCompany({
+    editDepartament({
       id: Number(id),
       name: departamentName,
-      company: data?.company || 0
+      company: companyId
     });
   };
 
   useEffect(() => {
-    if (successEdit) {
-      router.push('/companies');
+    if (successEdit || successDelete) {
+      router.push('/departaments');
     }
-  }, [router, successEdit]);
-
-  useEffect(() => {
-    if (successDelete) {
-      router.push('/companies');
-    }
-  }, [router, successDelete]);
+  }, [router, successEdit, successDelete]);
 
   const handleDelete = () => {
-    deleteCompany({ id: Number(id) });
+    deleteDepartament({ id: Number(id) });
   };
 
   if (isPending) {
@@ -61,16 +57,18 @@ export function DepartamentPage({ id }: TProps) {
       </Button>
       <Card className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
-          {isEditing ? (
+          {isEditing ? <>
             <Input
               onChange={(e) => setDepartamentName(e.target.value)}
-              placeholder="Enter company name"
+              placeholder="Введите название департамента"
               value={departamentName}
               className="w-full mb-4"
             />
-          ) : (
-            <h2 className="text-xl font-semibold mb-2">{data.name}</h2>
-          )}
+            <CompanySelect onChange={setCompanyId}/>
+          </> : <>
+            <h1 className='text-xl font-semibold mb-2'>{data.company.name}</h1>
+            <h2 className='text-xl font-semibold mb-2'>{data.name}</h2>
+          </>}
         </CardHeader>
         <CardFooter className="flex flex-col md:flex-row justify-between gap-4 mt-4">
           {isEditing ? (

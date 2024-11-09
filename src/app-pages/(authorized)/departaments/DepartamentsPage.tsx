@@ -1,8 +1,8 @@
 'use client';
 
-import { CompanyCard } from '@/entities/company';
 import { useGetDepartaments } from '@/entities/departament/hooks/useGetDepartaments';
 import { CreateDepartament } from '@/features/departaments/ui';
+import { DepartamentCard } from '@/entities/departament/ui';
 
 export function DepartamentsPage() {
   const { data, isPending } = useGetDepartaments();
@@ -18,8 +18,8 @@ export function DepartamentsPage() {
         {isPending && <p className="text-center mt-4">Загрузка...</p>}
         <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full">
           {Array.isArray(data) && data.length > 0 ? (
-            data.map((company) => (
-              <CompanyCard key={company.id} data={company}/>
+            data.map((departament) => (
+              <DepartamentCard key={departament.id} data={departament}/>
             ))
           ) : (
             !isPending && <p className="text-center mt-4">Нет доступных департаментов</p>

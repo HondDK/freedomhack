@@ -70,7 +70,7 @@ export function CompanyPage({ id }: TProps) {
           {isEditing ? (
             <Input
               onChange={(e) => setCompanyName(e.target.value)}
-              placeholder="Enter company name"
+              placeholder="Введите название компании"
               className="w-full mb-4"
               value={companyName}
             />
