@@ -5,6 +5,7 @@ import { JobSearch } from '@/features/job/ui';
 import { JobCard } from '@/entities/job';
 import { TGetJobsReqDto } from '@/entities/job/api';
 import { useGetJobs } from '@/entities/job/hooks/useGetJobs';
+import { DirectionFilters } from '@/entities/work/direction/ui';
 
 export function Main() {
   const [filters, setFilters] = useState<TGetJobsReqDto>({});
@@ -20,6 +21,7 @@ export function Main() {
         setFilters={setFilters}
         filters={filters}
       />
+      <DirectionFilters setFilters={setFilters}/>
       <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {isPending && <p className='text-center mt-4'>Загрузка...</p>}
         {data?.map((job) => (

@@ -8,7 +8,7 @@ export type TEndpoint = {
 };
 
 export type TPayload<T = undefined> = {
-  query?: Record<string, string | number | null>;
+  query?: Record<string, string | number | number[] | null>;
   params?: Record<string, string | number | null>;
   body?: T;
 };

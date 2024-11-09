@@ -101,10 +101,10 @@ interface JobSearchStatus {
 export type TGetJobsResDto = IJobModel[]
 
 export type TGetJobsReqDto = {
-  work_format?: string,
-  work_direction?: string,
-  work_experience?: string,
-  sub_work_direction?: string,
+  work_format?: number[],
+  work_direction?: number[],
+  work_experience?: number[],
+  sub_work_direction?: number[],
   skills?: string,
   company?: string
   country?: string,

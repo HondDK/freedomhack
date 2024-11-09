@@ -3,5 +3,5 @@ export type TGetWorkDirectionResDto = {
   name_kz: string;
   name_ru: string;
   name_en: string;
-  sub_work_directions: string
+  sub_work_directions: Omit<TGetWorkDirectionResDto, 'sub_work_directions'>
 }[]
