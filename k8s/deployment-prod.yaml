@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freedom-front
+  labels:
+    deployment: freedom-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: freedom-front
+  template:
+    metadata:
+      labels:
+        app: freedom-front
+    spec:
+      containers:
+        - name: freedom-front-api
+          args:
+            - mv /code/k8s/nginx/default.conf /code/k8s/nginx/conf.d/default.conf;
+              npm run start;
+          command: ["/bin/sh", "-c"]
+          image: neznajkin/freedom_front:<VERSION>
+          env:
+            - name: NEXT_PUBLIC_HOST
+              value: "https://dudeonthecam.online/freedom_back/api/"
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: internal-nginx-volume
+              mountPath: /code/k8s/nginx/conf.d
+        - name: freedom-front-nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: internal-nginx-volume
+              mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: internal-nginx-volume
+        emptyDir: {}
+

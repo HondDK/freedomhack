@@ -1,0 +1,48 @@
+stages:
+  - build_base
+  - build_app
+  - deploy
+
+services:
+  - docker:20.10.7-dind
+
+
+build_base:
+  stage: build_base
+  image: docker:latest
+  script:
+    - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin
+    - docker build -t $CI_REGISTRY_IMAGE:base . -f docker/base/Dockerfile
+    - docker push $CI_REGISTRY_IMAGE:base
+  only:
+    refs:
+      - feat/deploy
+    changes:
+      - docker/base/Dockerfile
+      - package.json
+      - package-lock.json
+      - .gitlab-ci.yml
+
+
+build_app:
+  stage: build_app
+  image: docker:latest
+  script:
+    - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID . -f docker/app/Dockerfile
+    - docker push $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID
+  only:
+    - feat/deploy
+
+
+deploy_prod:
+  stage: deploy
+  image:
+    name: bitnami/kubectl
+    entrypoint: [""]
+  script:
+    - echo "$KUBEAUTHAPP" > ~/.kube/config
+    - sed -i "s/<VERSION>/${CI_PIPELINE_ID}/g" ./k8s/deployment-prod.yaml
+    - kubectl apply -f ./k8s/deployment-prod.yaml
+  only:
+    - feat/deploy
