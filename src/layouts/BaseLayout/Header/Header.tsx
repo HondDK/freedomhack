@@ -112,13 +112,13 @@ export function Header() {
         <DropdownMenuTrigger asChild>
           <Button className="rounded-full" variant="secondary" size="icon">
             <CircleUser className="h-5 w-5"/>
-            <span className="sr-only">Профиль </span>
+            <span className="sr-only">Профиль</span>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>Мой профиль</DropdownMenuLabel>
-          <DropdownMenuSeparator/>
-          <DropdownMenuSeparator/>
+          {/*<DropdownMenuLabel>Мой профиль</DropdownMenuLabel>*/}
+          {/*<DropdownMenuSeparator/>*/}
+          {/*<DropdownMenuSeparator/>*/}
           <DropdownMenuItem onClick={() => deleteCookie('authToken')}>Выйти с аккаунта</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

@@ -1,2 +1,2 @@
-export { VacancyPage } from './vacancy'
 export { CompaniesPage } from './companies'
+export { VacancyPage } from './vacancy'

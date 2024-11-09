@@ -16,13 +16,13 @@ export function CompanyCard({ data }: TProps) {
 
   return (
     <div
-      onClick={handleClickOnCard}
       className="cursor-pointer rounded-lg w-300 bg-gray-100 p-4 flex flex-col items-center justify-center hover:shadow-lg transition-shadow duration-200"
+      onClick={handleClickOnCard}
     >
       <img
-        src={data.logo}
-        alt={`${data.name} logo`}
         className="w-16 h-16 mb-4 object-contain"
+        alt={`${data.name} logo`}
+        src={data.logo}
       />
       <p className="text-center text-sm font-medium">{data.name}</p>
     </div>
