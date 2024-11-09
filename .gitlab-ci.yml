@@ -13,7 +13,7 @@ build_base:
   script:
     - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin
     - docker build -t $CI_REGISTRY_IMAGE:base . -f docker/base/Dockerfile
-    - docker push $CI_REGISTRY_IMAGE:base
+    - docker push $CI_REGISTRY_IMAGE:base $CI_REGISTRY
   only:
     refs:
       - feat/deploy
@@ -30,7 +30,7 @@ build_app:
   script:
     - echo "$DOCKERHUB_ACCESS_TOKEN" | docker login -u "$CI_REGISTRY_USER" --password-stdin
     - docker build -t $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID . -f docker/app/Dockerfile
-    - docker push $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID
+    - docker push $CI_REGISTRY_IMAGE:$CI_PIPELINE_ID $CI_REGISTRY
   only:
     - feat/deploy
 
