@@ -6,6 +6,7 @@ import { JobVacancyRespond } from '@/features/job/ui';
 import { useGetJob } from '@/entities/job/hooks/useGetJob';
 import { Button } from '@/shared/ui/button';
 import { Skeleton } from '@/shared/ui/skeleton';
+import { hasCookie } from 'cookies-next';
 
 type TProps = {
   id: string;
@@ -15,6 +16,7 @@ export function VacancyPage(props: TProps) {
   const { id } = props;
   const router = useRouter();
   const { data, isPending } = useGetJob(Number(id));
+  const isAuth = hasCookie('authToken')
 
   if (isPending) {
     return <Skeleton className="h-full w-full" />;
@@ -55,12 +57,13 @@ export function VacancyPage(props: TProps) {
           <p>Создано: {new Date(created).toLocaleDateString()}</p>
           <p>Обновлено: {new Date(modified).toLocaleDateString()}</p>
         </div>
+        {!isAuth &&
         <div className="hidden lg:block mt-6">
           <h4 className="text-xl font-semibold tracking-tight mb-3">
             Расскажите нам о себе
           </h4>
           <JobVacancyRespond jobId={Number(id)} />
-        </div>
+        </div>}
       </div>
       <VacancyAdditionalDetails data={data} />
       <div className="lg:hidden order-last w-full mt-6">

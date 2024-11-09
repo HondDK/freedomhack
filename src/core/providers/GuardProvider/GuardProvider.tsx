@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { getCookie } from 'cookies-next';
 import { usePathname, useRouter } from 'next/navigation';
@@ -15,14 +15,20 @@ export default function GuardProvider(props: PropsWithChildren) {
     if (token && (pathname === '/auth' || pathname === '/registration')) {
       router.push('/');
     }
-    if (!token && pathname !== '/auth' && pathname !== '/registration') {
+    if (
+      !token &&
+      pathname !== '/auth' &&
+      pathname !== '/registration' &&
+      pathname !== '/' &&
+      !pathname.startsWith('/vacancy')
+    ) {
       router.push('/auth');
     }
   }, [token, pathname, router]);
 
   const condition =
     (token && (pathname === '/auth' || pathname === '/registration')) ||
-    (!token && pathname !== '/auth' && pathname !== '/registration');
+    (!token && pathname !== '/auth' && pathname !== '/registration' && pathname !== '/' && !pathname.startsWith('/vacancy'));
 
   if (condition) {
     return <LoadingSpinner />;

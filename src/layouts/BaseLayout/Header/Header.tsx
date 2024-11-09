@@ -36,6 +36,7 @@ export function Header() {
       >
         Вакансии
       </Link>
+      {isAuth && <>
       <Link
         className="text-muted-foreground transition-colors hover:text-foreground"
         href="/companies"
@@ -54,6 +55,7 @@ export function Header() {
       >
         База резюме
       </Link>
+      </>}
     </nav>
     <Sheet>
       <SheetTrigger asChild>
@@ -80,6 +82,7 @@ export function Header() {
           >
             Вакансии
           </Link>
+          {isAuth && <>
           <Link
             className="text-muted-foreground transition-colors hover:text-foreground"
             href="/companies"
@@ -98,12 +101,16 @@ export function Header() {
           >
             Анализ вакансии
           </Link>
+          </>}
         </nav>
       </SheetContent>
     </Sheet>
     <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
       <form className="ml-auto flex-1 sm:flex-initial">
       </form>
+      {!isAuth && <Link className={'text-muted-foreground transition-colors hover:text-foreground'} href={'/auth'}>
+        Войти
+      </Link>}
       {isAuth &&
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

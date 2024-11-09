@@ -1,0 +1,1 @@
+export { UploadResume } from './UploadResume'
