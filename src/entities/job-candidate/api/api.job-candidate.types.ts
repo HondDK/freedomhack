@@ -35,19 +35,6 @@ interface Skill {
   id: number;
 }
 
-interface Company {
-  creator: Creator;
-  logo?: string;
-  name: string;
-  id: number;
-}
-
-interface Creator {
-  name: string;
-  id: number;
-}
-
-
 interface Country {
   name_kz: string;
   name_ru: string;
@@ -69,6 +56,7 @@ export type TGetJobCandidatesResDto = IJobCandidateModel[]
 export type TGetJobCandidatesReqDto = {
   job?: string,
   work_direction?: number[],
+  work_experiences?: number[],
   sub_work_directions?: number[],
   skills?: number[],
   countries?: number[],

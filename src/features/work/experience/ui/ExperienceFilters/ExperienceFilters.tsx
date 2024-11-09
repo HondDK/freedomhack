@@ -2,20 +2,29 @@ import { useState } from 'react';
 import { TGetJobsReqDto } from '@/entities/job/api';
 import { useGetWorkExperience } from '@/entities/work/experience/hooks';
 import { FilterCheckboxGroup } from '@/shared/ui';
+import { TGetJobCandidatesReqDto } from '@/entities/job-candidate/api';
 
 type TProps = {
-  setFilters: (filters: TGetJobsReqDto) => void;
+  setFilters: (filters: TGetJobsReqDto | TGetJobCandidatesReqDto) => void,
+  isResume?: boolean
 };
 
-export function ExperienceFilters({ setFilters }: TProps) {
+export function ExperienceFilters({ setFilters, isResume }: TProps) {
   const { data } = useGetWorkExperience();
   const [selectedMainExperience, setSelectedMainExperience] = useState<number[]>([]);
 
   const updateFilters = ({ main }: { main: number[] }) => {
     setSelectedMainExperience(main);
-    setFilters({
-      work_experience: main,
-    });
+
+    if (isResume){
+      setFilters({
+        work_experiences: main,
+      });
+    } else {
+      setFilters({
+        work_experience: main,
+      });
+    }
   };
 
   return (

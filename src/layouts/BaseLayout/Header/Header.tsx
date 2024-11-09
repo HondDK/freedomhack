@@ -3,21 +3,18 @@
 import { deleteCookie, hasCookie } from 'cookies-next';
 import {
   CircleUser,
-  Search,
   Menu
 } from 'lucide-react';
 import { ScanEye } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/shared/ui/button';
 import {
-  DropdownMenuSeparator,
+
   DropdownMenuContent,
   DropdownMenuTrigger,
-  DropdownMenuLabel,
   DropdownMenuItem,
   DropdownMenu,
 } from '@/shared/ui/dropdown-menu'
-import { Input } from '@/shared/ui/input';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet'
 
 export function Header() {
@@ -53,7 +50,7 @@ export function Header() {
       </Link>
       <Link
         className="text-muted-foreground transition-colors hover:text-foreground"
-        href="#"
+        href="/resume"
       >
         База резюме
       </Link>
