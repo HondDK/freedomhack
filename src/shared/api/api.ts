@@ -3,7 +3,7 @@ import { getCookie } from 'cookies-next';
 import type { TEndpoint, TPayload } from './api.types';
 import { createQueryString, replaceTemplate } from './api.utils';
 
-const HOST = process.env.NEXT_PUBLIC_HOST;
+const HOST = 'https://dudeonthecam.online/freedom_back/api/';
 
 type ApiRequestFunction<TParams = void, TResult = unknown> = (payload?: TParams) => Promise<TResult>;
 
