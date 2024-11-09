@@ -1,6 +1,6 @@
-import { Button } from '@/shared/ui/button';
-import { useCompareJobCandidate } from '@/entities/company/hooks/useCompareJobCandidate';
 import { TCompareJobCandidateReqDto } from '@/entities/company/api';
+import { useCompareJobCandidate } from '@/entities/company/hooks/useCompareJobCandidate';
+import { Button } from '@/shared/ui/button';
 
 type TProps = TCompareJobCandidateReqDto;
 

@@ -1,8 +1,8 @@
 'use client'
 
+import { CompareJobCandidate } from '@/features/job/ui';
 import { IJobCandidateModel } from '@/entities/job-candidate/api';
 // eslint-disable-next-line boundaries/element-types
-import { CompareJobCandidate } from '@/features/job/ui';
 
 type TProps = {
   data: IJobCandidateModel;
