@@ -1,5 +1,5 @@
 export const MAX_WIDTH = '1264px';
-export const HOST = process.env.NEXT_PUBLIC_HOST ?? '';
+export const HOST = 'https://dudeonthecam.online/freedom_back/api/';
 export const PAGE_SIZE = 20;
 export const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 export const SHORT_DATE_FORMAT = 'YYYY-MM-DD';

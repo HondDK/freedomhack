@@ -3,13 +3,13 @@ import { getCookie } from 'cookies-next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { getQueryClient } from '@/core/providers/QueryProvider/QueryProvider';
 import { TGetJobCandidatesReqDto, GET_JOB_CANDIDATES } from '@/entities/job-candidate/api';
 import { Button } from '@/shared/ui/button';
 import { DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog } from '@/shared/ui/dialog';
 import { FormControl, FormMessage, FormField, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { Label } from '@/shared/ui/label';
-import { getQueryClient } from '@/core/providers/QueryProvider/QueryProvider';
 
 const FormSchema = z.object({
   file: z.any().refine((fileList) => fileList && fileList.length > 0, { message: 'Архив обязателен.' }),
@@ -17,7 +17,7 @@ const FormSchema = z.object({
 
 type FormData = z.infer<typeof FormSchema>;
 
-const HOST = process.env.NEXT_PUBLIC_HOST;
+const HOST = 'https://dudeonthecam.online/freedom_back/api/';
 const token = getCookie('authToken');
 
 type TProps = {

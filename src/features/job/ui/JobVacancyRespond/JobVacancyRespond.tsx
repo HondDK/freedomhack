@@ -22,7 +22,7 @@ type TJobApplicationFormProps = {
   jobId: number;
 };
 
-const HOST = process.env.NEXT_PUBLIC_HOST;
+const HOST = 'https://dudeonthecam.online/freedom_back/api/';
 
 export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
   const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
