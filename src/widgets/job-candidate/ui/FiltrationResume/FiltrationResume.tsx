@@ -13,7 +13,7 @@ export function FiltrationResume(props: TProps){
 
   return <>
     <CountryFilters setFilters={setFilters}/>
-    <ExperienceFilters setFilters={setFilters} isResume={true}/>
+    <ExperienceFilters setFilters={setFilters} isResume/>
     <DirectionFilters setFilters={setFilters}/>
     <SkillFilters setFilters={setFilters}/>
   </>
