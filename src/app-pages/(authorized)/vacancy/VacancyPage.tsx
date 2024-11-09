@@ -1,12 +1,12 @@
 'use client';
 
+import { hasCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { VacancyAdditionalDetails } from '@/widgets/job/ui';
-import { JobVacancyRespond } from '@/features/job/ui';
+import { JobVacancyRespond, JobCreate } from '@/features/job/ui';
 import { useGetJob } from '@/entities/job/hooks/useGetJob';
 import { Button } from '@/shared/ui/button';
 import { Skeleton } from '@/shared/ui/skeleton';
-import { hasCookie } from 'cookies-next';
 
 type TProps = {
   id: string;

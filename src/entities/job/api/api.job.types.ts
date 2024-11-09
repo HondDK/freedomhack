@@ -112,8 +112,16 @@ export type TGetJobsReqDto = {
   search?: string
 }
 
+export type TGetJobStatusResDto = {
+  id: number,
+  name: string
+}[]
+
 export type TCreateJobReqDto = {
-  id: number;
+  id?: number;
+  created?: string;
+  modified?: string;
+  creator?: number;
   name_kz: string;
   name_ru: string;
   name_en: string;
@@ -133,10 +141,9 @@ export type TCreateJobReqDto = {
   country?: number;
   city?: number;
   skills: number[];
-  created: string;
-  modified: string;
-  creator: number;
-}
+};
+
+
 export type TCreateJobResDto = IJobModel
 
 export type TGetJobReqDto = {

@@ -1,0 +1,1 @@
+export { DepartamentSelect } from './DepartamentSelect'
