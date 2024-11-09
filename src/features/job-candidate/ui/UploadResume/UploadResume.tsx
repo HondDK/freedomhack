@@ -1,15 +1,15 @@
-import { Form, FormControl, FormField, FormItem, FormMessage } from '@/shared/ui/form';
-import { Label } from '@/shared/ui/label';
-import { Input } from '@/shared/ui/input';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { getCookie } from 'cookies-next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { getCookie } from 'cookies-next';
 import { getQueryClient } from '@/app/get-query-client';
-import { GET_JOB_CANDIDATES, TGetJobCandidatesReqDto } from '@/entities/job-candidate/api';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/shared/ui/dialog';
+import { TGetJobCandidatesReqDto, GET_JOB_CANDIDATES } from '@/entities/job-candidate/api';
 import { Button } from '@/shared/ui/button';
+import { DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog } from '@/shared/ui/dialog';
+import { FormControl, FormMessage, FormField, FormItem, Form } from '@/shared/ui/form';
+import { Input } from '@/shared/ui/input';
+import { Label } from '@/shared/ui/label';
 
 const FormSchema = z.object({
   file: z.any().refine((fileList) => fileList && fileList.length > 0, { message: 'Архив обязателен.' }),
@@ -70,7 +70,7 @@ export function UploadResume(props: TProps) {
   };
 
   return (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+    <Dialog onOpenChange={setIsDialogOpen} open={isDialogOpen}>
       <DialogTrigger asChild>
         <Button onClick={() => setIsDialogOpen(true)} className="mt-4">Загрузка резюме</Button>
       </DialogTrigger>
@@ -92,8 +92,8 @@ export function UploadResume(props: TProps) {
                         handleFileUpload(files);
                       }}
                       accept=".zip"
-                      id="file"
                       type="file"
+                      id="file"
                     />
                   </FormControl>
                   <FormMessage />

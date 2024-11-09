@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/shared/ui/dialog';
 import { useCreateCompany } from '@/entities/company/hooks/useCreateCompany';
 import { Button } from '@/shared/ui/button';
+import { DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, Dialog } from '@/shared/ui/dialog';
 import { Input } from '@/shared/ui/input';
 
 export function CreateCompany() {
@@ -23,11 +23,11 @@ export function CreateCompany() {
         </DialogHeader>
         <div className="mt-4">
           <Input
-            type="text"
-            placeholder="Название компании"
-            value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Название компании"
             className="w-full mb-4"
+            value={name}
+            type="text"
           />
         </div>
         <DialogFooter>

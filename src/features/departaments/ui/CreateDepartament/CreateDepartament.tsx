@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/shared/ui/dialog';
-import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
-import { useCreateDepartament } from '@/entities/departament/hooks/useCreateDepartament';
 import { CompanySelect } from '@/entities/company/ui';
+import { useCreateDepartament } from '@/entities/departament/hooks/useCreateDepartament';
+import { Button } from '@/shared/ui/button';
+import { DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, Dialog } from '@/shared/ui/dialog';
+import { Input } from '@/shared/ui/input';
 
 export function CreateDepartament() {
   const { mutate, isPending } = useCreateDepartament();
@@ -30,16 +30,16 @@ export function CreateDepartament() {
         </DialogHeader>
         <div className="mt-4">
           <Input
-            type="text"
-            placeholder="Название департамента"
-            value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Название департамента"
             className="w-full mb-4"
+            value={name}
+            type="text"
           />
           <CompanySelect onChange={setCompanyId} />
         </div>
         <DialogFooter>
-          <Button onClick={handleSubmit} disabled={isPending || companyId === null} className="w-full">
+          <Button disabled={isPending || companyId === null} onClick={handleSubmit} className="w-full">
             {isPending ? 'Создание...' : 'Создать департамент'}
           </Button>
         </DialogFooter>

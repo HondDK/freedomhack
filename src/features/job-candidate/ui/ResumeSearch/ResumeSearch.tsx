@@ -1,7 +1,7 @@
 import { Search } from 'lucide-react';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { Input } from '@/shared/ui/input';
 import { TGetJobCandidatesReqDto } from '@/entities/job-candidate/api';
+import { Input } from '@/shared/ui/input';
 
 type TProps = {
   filters: TGetJobCandidatesReqDto,

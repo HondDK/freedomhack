@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { CompanySelect } from '@/entities/company/ui';
 import { useDeleteDepartament } from '@/entities/departament/hooks/useDeleteDepartament';
 import { useEditDepartament } from '@/entities/departament/hooks/useEditDepartament';
 import { useGetDepartament } from '@/entities/departament/hooks/useGetDepartament';
@@ -9,7 +10,6 @@ import { Button } from '@/shared/ui/button';
 import { CardFooter, CardHeader, Card } from '@/shared/ui/card';
 import { Input } from '@/shared/ui/input';
 import { Skeleton } from '@/shared/ui/skeleton';
-import { CompanySelect } from '@/entities/company/ui';
 
 type TProps = {
   id: string;

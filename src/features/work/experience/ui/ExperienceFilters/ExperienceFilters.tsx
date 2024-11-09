@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { TGetJobsReqDto } from '@/entities/job/api';
+import { TGetJobCandidatesReqDto } from '@/entities/job-candidate/api';
 import { useGetWorkExperience } from '@/entities/work/experience/hooks';
 import { FilterCheckboxGroup } from '@/shared/ui';
-import { TGetJobCandidatesReqDto } from '@/entities/job-candidate/api';
 
 type TProps = {
   setFilters: (filters: TGetJobsReqDto | TGetJobCandidatesReqDto) => void,

@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from '@tanstack/react-query';
-import { TGetJobCandidatesResDto, GET_JOB_CANDIDATES, TGetJobCandidatesReqDto } from '@/entities/job-candidate/api';
+import { TGetJobCandidatesResDto, TGetJobCandidatesReqDto, GET_JOB_CANDIDATES } from '@/entities/job-candidate/api';
 import { api } from '@/shared/api';
 
 export function useGetJobCandidates(filters: TGetJobCandidatesReqDto) {

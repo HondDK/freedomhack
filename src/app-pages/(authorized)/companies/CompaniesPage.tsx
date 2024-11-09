@@ -1,8 +1,8 @@
 'use client';
 
+import { CreateCompany } from '@/features/companies/ui';
 import { CompanyCard } from '@/entities/company';
 import { useGetCompanies } from '@/entities/company/hooks/useGetCompanies';
-import { CreateCompany } from '@/features/companies/ui';
 
 export function CompaniesPage() {
   const { data, isPending } = useGetCompanies();

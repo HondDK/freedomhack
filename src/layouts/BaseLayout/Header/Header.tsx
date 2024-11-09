@@ -37,24 +37,24 @@ export function Header() {
         Вакансии
       </Link>
       {isAuth && <>
-      <Link
-        className="text-muted-foreground transition-colors hover:text-foreground"
-        href="/companies"
-      >
+        <Link
+          className="text-muted-foreground transition-colors hover:text-foreground"
+          href="/companies"
+        >
         Компании
-      </Link>
-      <Link
-        className="text-muted-foreground transition-colors hover:text-foreground"
-        href="/departaments"
-      >
+        </Link>
+        <Link
+          className="text-muted-foreground transition-colors hover:text-foreground"
+          href="/departaments"
+        >
         Департаменты
-      </Link>
-      <Link
-        className="text-muted-foreground transition-colors hover:text-foreground"
-        href="/resume"
-      >
+        </Link>
+        <Link
+          className="text-muted-foreground transition-colors hover:text-foreground"
+          href="/resume"
+        >
         База резюме
-      </Link>
+        </Link>
       </>}
     </nav>
     <Sheet>
@@ -83,24 +83,24 @@ export function Header() {
             Вакансии
           </Link>
           {isAuth && <>
-          <Link
-            className="text-muted-foreground transition-colors hover:text-foreground"
-            href="/companies"
-          >
+            <Link
+              className="text-muted-foreground transition-colors hover:text-foreground"
+              href="/companies"
+            >
             Компании
-          </Link>
-          <Link
-            className="text-muted-foreground transition-colors hover:text-foreground"
-            href="/departaments"
-          >
+            </Link>
+            <Link
+              className="text-muted-foreground transition-colors hover:text-foreground"
+              href="/departaments"
+            >
             Департаменты
-          </Link>
-          <Link
-            className="text-muted-foreground transition-colors hover:text-foreground"
-            href="#"
-          >
+            </Link>
+            <Link
+              className="text-muted-foreground transition-colors hover:text-foreground"
+              href="#"
+            >
             Анализ вакансии
-          </Link>
+            </Link>
           </>}
         </nav>
       </SheetContent>

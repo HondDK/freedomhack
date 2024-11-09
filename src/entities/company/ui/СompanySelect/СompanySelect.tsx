@@ -1,6 +1,6 @@
-import { useGetCompanies } from '@/entities/company/hooks/useGetCompanies';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/select';
 import { TGetCompaniesResDto } from '@/entities/company/api';
+import { useGetCompanies } from '@/entities/company/hooks/useGetCompanies';
+import { SelectContent, SelectTrigger, SelectValue, SelectItem, Select } from '@/shared/ui/select';
 
 export function CompanySelect({ onChange }: { onChange: (id: number) => void }) {
   const { data: companies } = useGetCompanies();
@@ -15,7 +15,7 @@ export function CompanySelect({ onChange }: { onChange: (id: number) => void }) 
       </SelectTrigger>
       <SelectContent>
         {companies?.map((company: TGetCompaniesResDto[0]) => (
-          <SelectItem key={company.id} value={company.id?.toString() || ''}>
+          <SelectItem value={company.id?.toString() || ''} key={company.id}>
             {company.name}
           </SelectItem>
         ))}

@@ -1,9 +1,9 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query';
+import { TEditCompanyReqDto, TEditCompanyResDto, EDIT_COMPANY } from '@/entities/company/api';
 import { TEditDepartamentReqDto, TEditDepartamentResDto, EDIT_DEPARTAMENT } from '@/entities/departament/api';
 import { api } from '@/shared/api';
-import { EDIT_COMPANY, TEditCompanyReqDto, TEditCompanyResDto } from '@/entities/company/api';
 
 export function useEditDepartament() {
   const { mutate, data, isError, isSuccess, isPending } = useMutation({
