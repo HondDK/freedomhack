@@ -12,15 +12,15 @@ export const CREATE_DEPARTAMENT : TEndpoint = {
 
 export const GET_DEPARTAMENT: TEndpoint = {
   method: 'GET',
-  path: 'departament/departament/{{id}}'
+  path: 'departament/departament/{{id}}/'
 }
 
 export const EDIT_DEPARTAMENT: TEndpoint = {
   method: 'PATCH',
-  path: 'departament/departament/{{id}}'
+  path: 'departament/departament/{{id}}/'
 }
 
 export const DELETE_DEPARTAMENT: TEndpoint = {
   method: 'DELETE',
-  path: 'departament/departament/{{id}}'
+  path: 'departament/departament/{{id}}/'
 }

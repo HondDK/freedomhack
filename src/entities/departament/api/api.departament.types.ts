@@ -19,7 +19,7 @@ export type TGetDepartamentReqDto = {
 
 export type TGetDepartamentResDto = IDepartamentModel
 
-export type TEditDepartamentReqDto = Omit<IDepartamentModel, 'id'>
+export type TEditDepartamentReqDto = IDepartamentModel
 
 export type TEditDepartamentResDto = IDepartamentModel
 

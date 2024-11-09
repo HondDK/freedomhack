@@ -2,25 +2,25 @@ import { TEndpoint } from '@/shared/api/api.types';
 
 export const GET_COMPANIES : TEndpoint = {
   method: 'GET',
-  path: 'company/company/'
+  path: 'departament/departament/'
 }
 
 export const CREATE_COMPANY : TEndpoint = {
   method: 'POST',
-  path: 'company/company/'
+  path: 'departament/departament/'
 }
 
 export const GET_COMPANY: TEndpoint = {
   method: 'GET',
-  path: 'company/company/{{id}}/'
+  path: 'departament/departament/{{id}}/'
 }
 
 export const EDIT_COMPANY: TEndpoint = {
   method: 'PATCH',
-  path: 'company/company/{{id}}/'
+  path: 'departament/departament/{{id}}/'
 }
 
 export const DELETE_COMPANY: TEndpoint = {
   method: 'DELETE',
-  path: 'company/company/{{id}}/'
+  path: 'departament/departament/{{id}}/'
 }

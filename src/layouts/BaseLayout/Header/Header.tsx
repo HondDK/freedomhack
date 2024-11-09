@@ -1,6 +1,6 @@
 'use client'
 
-import { deleteCookie } from 'cookies-next';
+import { deleteCookie, hasCookie } from 'cookies-next';
 import {
   CircleUser,
   Search,
@@ -20,8 +20,10 @@ import {
 import { Input } from '@/shared/ui/input';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet'
 
-
 export function Header() {
+
+  const isAuth = hasCookie('authToken')
+
   return <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
     <nav
       className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
@@ -33,15 +35,27 @@ export function Header() {
       </Link>
       <Link
         className="text-foreground transition-colors hover:text-foreground"
-        href="#"
+        href="/"
       >
         Вакансии
       </Link>
       <Link
         className="text-muted-foreground transition-colors hover:text-foreground"
+        href="/companies"
+      >
+        Компании
+      </Link>
+      <Link
+        className="text-muted-foreground transition-colors hover:text-foreground"
+        href="/departaments"
+      >
+        Департаменты
+      </Link>
+      <Link
+        className="text-muted-foreground transition-colors hover:text-foreground"
         href="#"
       >
-        Просмотр компаний
+        Анализ вакансии
       </Link>
     </nav>
     <Sheet>
@@ -65,15 +79,27 @@ export function Header() {
           </Link>
           <Link
             className="text-foreground transition-colors hover:text-foreground"
-            href="#"
+            href="/"
           >
             Вакансии
           </Link>
           <Link
             className="text-muted-foreground transition-colors hover:text-foreground"
+            href="/companies"
+          >
+            Компании
+          </Link>
+          <Link
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            href="/departaments"
+          >
+            Департаменты
+          </Link>
+          <Link
+            className="text-muted-foreground transition-colors hover:text-foreground"
             href="#"
           >
-            Просмотр компаний
+            Анализ вакансии
           </Link>
         </nav>
       </SheetContent>
@@ -81,6 +107,7 @@ export function Header() {
     <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
       <form className="ml-auto flex-1 sm:flex-initial">
       </form>
+      {isAuth &&
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="rounded-full" variant="secondary" size="icon">
@@ -91,11 +118,11 @@ export function Header() {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Мой профиль</DropdownMenuLabel>
           <DropdownMenuSeparator/>
-          <DropdownMenuItem>Настройки</DropdownMenuItem>
           <DropdownMenuSeparator/>
           <DropdownMenuItem onClick={() => deleteCookie('authToken')}>Выйти с аккаунта</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      }
     </div>
   </header>
 }
