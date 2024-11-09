@@ -57,7 +57,7 @@ export function ResumeCard(props: TProps) {
       {data.cv_file && (
         <div className="mt-3">
           <a
-            className="bg-green-500 text-white text-sm font-medium px-4 py-2 rounded hover:bg-green-700 transition-colors duration-200 inline-block text-center"
+            className="bg-green-500 text-white text-sm font-medium px-4 py-2 rounded hover:bg-green-700 transition-colors duration-200 inline-block text-center mt-auto"
             rel="noopener noreferrer"
             href={data.cv_file}
             target="_blank"
