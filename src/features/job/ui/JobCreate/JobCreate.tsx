@@ -41,7 +41,9 @@ const JobFormSchema = z.object({
   skills: z.array(z.number()).min(1, 'Навыки обязательны').optional(),
 });
 
-const fieldsConfig = [
+type JobFormFields = keyof z.infer<typeof JobFormSchema>;
+
+const fieldsConfig: Array<{ name: JobFormFields; label: string; placeholder: string; component: React.ComponentType<any> }> = [
   { name: 'name_kz', label: 'Қазақша атауы', placeholder: 'Вакансияның атауы', component: Input },
   { name: 'name_ru', label: 'Название на русском', placeholder: 'Название', component: Input },
   { name: 'name_en', label: 'Name in English', placeholder: 'Job name in English', component: Input },
@@ -62,7 +64,6 @@ const fieldsConfig = [
   { name: 'city', label: 'Город', placeholder: 'City ID', component: CountrySelect },
   { name: 'skills', label: 'Навыки', placeholder: 'Необходимые навыки', component: SkillMultiSelect },
 ];
-
 
 type TProps = {
   filters: TGetJobsReqDto
@@ -111,6 +112,7 @@ export function JobCreate({ filters }: TProps) {
           <h2 className="text-xl font-semibold mb-2">Создание вакансии</h2>
         </DialogHeader>
         <Form {...form}>
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
           {/*// @ts-ignore*/}
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {fieldsConfig.map(({ name, label, placeholder, component: Component }) => (
@@ -119,19 +121,17 @@ export function JobCreate({ filters }: TProps) {
                   <FormItem>
                     <FormLabel>{label}</FormLabel>
                     <FormControl>
-                      {/*// @ts-ignore*/}
                       <Component placeholder={placeholder} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
-                {/*// @ts-ignore*/}
-                name={name as keyof TCreateJobReqDto}
                 control={form.control}
+                name={name}
                 key={name}
               />
             ))}
-            <DialogFooter >
+            <DialogFooter>
               <Button className={'mb-3'} type="submit">Создать вакансию</Button>
               <DialogClose asChild>
                 <Button className={'mb-3'} variant="outline">Закрыть</Button>
