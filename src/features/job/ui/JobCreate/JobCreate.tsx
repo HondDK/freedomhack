@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { getQueryClient } from '@/app/get-query-client';
 import { CompanySelect } from '@/entities/company/ui';
 import { DepartamentSelect } from '@/entities/departament/ui';
 import { JobSearchStatusSelect } from '@/entities/job';
@@ -18,6 +17,7 @@ import { DialogTrigger, DialogContent, DialogFooter, DialogHeader, DialogClose, 
 import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { Textarea } from '@/shared/ui/textarea';
+import { getQueryClient } from '@/core/providers/QueryProvider/QueryProvider';
 
 const JobFormSchema = z.object({
   name_kz: z.string().min(1, 'Название на казахском обязательно').max(255),
