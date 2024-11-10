@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { VacancyAdditionalDetails } from '@/widgets/job/ui';
 import { JobVacancyRespond } from '@/features/job/ui';
 import { useGetJob } from '@/entities/job/hooks/useGetJob';
-import { useGetJobCandidates } from '@/entities/job-candidate/hooks/useGetJobCandidates';
+import { useGetFilterCandidate } from '@/entities/job-candidate/hooks/useGetFilterCandidate';
 import { ResumeCard } from '@/entities/job-candidate/ui';
 import { Button } from '@/shared/ui/button';
 import { Skeleton } from '@/shared/ui/skeleton';
@@ -20,24 +20,14 @@ export function VacancyPage(props: TProps) {
   const isAuth = hasCookie('authToken')
   const { data, isPending } = useGetJob(Number(id));
 
-  const { data: candidateData, isPending: candidateLoading } = useGetJobCandidates({
-    // skills: data?.skills.map((skill) => skill.id),
-    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // // @ts-expect-error
-    // cities: data?.city.id,
-    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // // @ts-expect-error
-    // countries: data?.country.id,
-    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // // @ts-expect-error
-    // sub_work_directions: data?.sub_work_direction.id,
-    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // // @ts-expect-error
-    // work_direction: data?.work_direction.id,
-    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // // @ts-expect-error
-    // work_experiences: data?.work_direction.id
-  })
+  const { data: candidateData, isPending: candidateLoading } = useGetFilterCandidate({
+    skills: data?.skills?.map((skill) => skill.id) || [],
+    cities: data?.city?.id ? [data.city.id] : [],
+    countries: data?.country?.id ? [data.country.id] : [],
+    sub_work_directions: data?.sub_work_direction?.id ? [data.sub_work_direction.id] : [],
+    work_direction: data?.work_direction?.id ? [data.work_direction.id] : [],
+    work_experiences: data?.work_experience?.id ? [data.work_experience .id] : []
+  });
 
   if (isPending) {
     return <Skeleton className="h-full w-full" />;

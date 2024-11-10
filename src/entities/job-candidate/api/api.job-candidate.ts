@@ -5,6 +5,11 @@ export const GET_JOB_CANDIDATES : TEndpoint = {
   path: 'job-candidate/job-candidate/'
 }
 
+export const GET_FILTER_CANDIDATE: TEndpoint = {
+  method: 'GET',
+  path: 'job-candidate/job-candidate/filter-candidates/'
+}
+
 export const CREATE_JOB_CANDIDATE : TEndpoint = {
   method: 'POST',
   path: 'job-candidate/create-job-candidate/'

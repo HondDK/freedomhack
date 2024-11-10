@@ -45,7 +45,7 @@ export function Auth(){
     },
   })
 
-  const { mutate: authUser,  isPending } = useAuthUser()
+  const { mutate: authUser  } = useAuthUser()
 
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -70,9 +70,9 @@ export function Auth(){
       <FormField
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Ваше ФИО</FormLabel>
+            <FormLabel>Ваш пароль</FormLabel>
             <FormControl>
-              <Input placeholder="Бобер Боберович Бобрик" type={'password'} {...field} />
+              <Input placeholder="1234querty" type={'password'} {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
