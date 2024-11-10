@@ -103,9 +103,9 @@ export function Header() {
             </Link>
             <Link
               className="text-muted-foreground transition-colors hover:text-foreground"
-              href="#"
+              href="/resume"
             >
-            Анализ вакансии
+              База резюме
             </Link>
           </>}
         </nav>
