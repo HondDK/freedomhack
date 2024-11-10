@@ -6,12 +6,14 @@ import { JobCreate, JobSearch } from '@/features/job/ui';
 import { JobCard } from '@/entities/job';
 import { TGetJobsReqDto } from '@/entities/job/api';
 import { useGetJobs } from '@/entities/job/hooks/useGetJobs';
-import { useScopedI18n, useI18n } from '@/shared/config';
+import { useScopedI18n } from '@/shared/config';
+import { hasCookie } from 'cookies-next';
 
 export function Main() {
   const [filters, setFilters] = useState<TGetJobsReqDto>({});
   const [showFilters, setShowFilters] = useState(false);
   const t = useScopedI18n('base');
+  const isAuth = hasCookie('authToken');
 
   const { data, isPending } = useGetJobs(filters);
 
@@ -23,7 +25,7 @@ export function Main() {
           <h1 className='text-3xl font-extrabold tracking-tight lg:text-5xl text-center'>
             {t('main.vacancies_count', { count: data?.length || 0 })}
           </h1>
-          <JobCreate filters={filters} />
+          {isAuth && <JobCreate filters={filters} />}
         </div>
         <JobSearch setFilters={setFilters} filters={filters}/>
         <div className='mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
