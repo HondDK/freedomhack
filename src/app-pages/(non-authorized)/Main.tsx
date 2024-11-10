@@ -1,5 +1,6 @@
 'use client';
 
+import { hasCookie } from 'cookies-next';
 import { useState } from 'react';
 import { FiltrationJobs } from '@/widgets/job/ui';
 import { JobCreate, JobSearch } from '@/features/job/ui';
@@ -7,7 +8,6 @@ import { JobCard } from '@/entities/job';
 import { TGetJobsReqDto } from '@/entities/job/api';
 import { useGetJobs } from '@/entities/job/hooks/useGetJobs';
 import { useScopedI18n } from '@/shared/config';
-import { hasCookie } from 'cookies-next';
 
 export function Main() {
   const [filters, setFilters] = useState<TGetJobsReqDto>({});

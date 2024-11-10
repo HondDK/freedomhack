@@ -1,4 +1,3 @@
-// I18nextProvider.tsx
 'use client';
 
 import { PropsWithChildren } from 'react';

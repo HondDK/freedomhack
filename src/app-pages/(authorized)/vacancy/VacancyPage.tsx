@@ -32,7 +32,7 @@ export function VacancyPage(props: TProps) {
     sub_work_directions: data?.sub_work_direction?.id ? [data.sub_work_direction.id] : [],
     work_direction: data?.work_direction?.id ? [data.work_direction.id] : [],
     work_experiences: data?.work_experience?.id ? [data.work_experience.id] : [],
-  });
+  }, isAuth);
 
   if (isPending) {
     return <Skeleton className="h-full w-full" />;
@@ -96,14 +96,15 @@ export function VacancyPage(props: TProps) {
           </div>
         )}
       </div>
-      <div className="mt-6 flex overflow-x-auto space-x-6">
-        {candidateLoading && <p className="text-center mt-4">{t('loading')}</p>}
-        {candidateData?.map((resume) => (
-          <div className="min-w-[200px]" key={resume.id}>
-            <ResumeCard jobId={data.id} data={resume} inVacancy />
-          </div>
-        ))}
-      </div>
+      {isAuth && (
+        <div className="mt-6 flex overflow-x-auto space-x-6">
+          {candidateLoading && <p className="text-center mt-4">{t('loading')}</p>}
+          {candidateData?.map((resume) => (
+            <div className="min-w-[200px]" key={resume.id}>
+              <ResumeCard jobId={data.id} data={resume} inVacancy />
+            </div>
+          ))}
+        </div>)}
     </>
   );
 }

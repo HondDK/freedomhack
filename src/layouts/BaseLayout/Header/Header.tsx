@@ -1,10 +1,11 @@
 'use client';
 
 import { deleteCookie, hasCookie } from 'cookies-next';
-import { useRouter } from 'next/navigation';
-import { CircleUser, Menu, ScanEye } from 'lucide-react';
+import { CircleUser, ScanEye, Menu } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useLanguage } from '@/core/providers/I18nextProvider/LanguageContext/LanguageContext';
+import { useScopedI18n } from '@/shared/config';
 import { Button } from '@/shared/ui/button';
 import {
   DropdownMenuContent,
@@ -14,7 +15,6 @@ import {
 } from '@/shared/ui/dropdown-menu';
 import { SelectContent, SelectTrigger, SelectValue, SelectItem, Select } from '@/shared/ui/select';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet';
-import { useScopedI18n } from '@/shared/config';
 
 export function Header() {
   const t = useScopedI18n('base.header');
