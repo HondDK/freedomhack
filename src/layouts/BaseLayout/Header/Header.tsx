@@ -1,6 +1,7 @@
 'use client';
 
 import { deleteCookie, hasCookie } from 'cookies-next';
+import { useRouter } from 'next/navigation';
 import { CircleUser, Menu, ScanEye } from 'lucide-react';
 import Link from 'next/link';
 import { useLanguage } from '@/core/providers/I18nextProvider/LanguageContext/LanguageContext';
@@ -19,6 +20,13 @@ export function Header() {
   const t = useScopedI18n('base.header');
   const { language, setLanguage } = useLanguage();
   const isAuth = hasCookie('authToken');
+  const router = useRouter();
+
+  const handleLogout = () => {
+    deleteCookie('authToken');
+    router.push('/');
+    router.refresh();
+  };
 
   const handleLanguageChange = (value: string) => {
     setLanguage(value);
@@ -107,7 +115,7 @@ export function Header() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => deleteCookie('authToken')}>
+              <DropdownMenuItem onClick={handleLogout}>
                 {t('logout')}
               </DropdownMenuItem>
             </DropdownMenuContent>
