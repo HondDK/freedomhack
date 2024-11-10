@@ -32,13 +32,6 @@ export function JobCard(props: TProps) {
       onClick={handleClickOnCard}
     >
       <div className="flex items-center gap-3 sm:gap-4">
-        {data.company.logo && (
-          <img
-            className="w-10 h-10 sm:w-12 sm:h-12  object-cover"
-            alt={`${data.company.name} logo`}
-            src={data.company.logo}
-          />
-        )}
         <div>
           <p className="text-gray-600 text-xs sm:text-sm">{data.company.name}</p>
           <h3 className="text-base sm:text-lg font-semibold text-gray-900">
