@@ -1,6 +1,7 @@
 'use client'
 
-import { createContext, useContext, ReactNode, useState } from 'react';
+import { createContext, useContext, ReactNode, useState, useEffect } from 'react';
+import { getCookie, setCookie } from 'cookies-next';
 
 type LanguageContextType = {
   language: string;
@@ -10,7 +11,17 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState('ru'); // Default language
+  const [language, setLanguageState] = useState('ru');
+
+  useEffect(() => {
+    const savedLanguage = getCookie('language') as string || 'ru';
+    setLanguageState(savedLanguage);
+  }, []);
+
+  const setLanguage = (newLanguage: string) => {
+    setLanguageState(newLanguage);
+    setCookie('language', newLanguage);
+  };
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
