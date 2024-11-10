@@ -32,6 +32,7 @@ export const MAIN_TRANSLATIONS_EN = {
     dialog_title: 'Create Vacancy',
     submit_button: 'Create Vacancy',
     close_button: 'Close',
+    apply_now: 'To respond to a vacancy',
     form_labels: {
       name_kz: 'Title in Kazakh',
       name_ru: 'Title in Russian',

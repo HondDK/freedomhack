@@ -32,6 +32,7 @@ export const MAIN_TRANSLATIONS_RU = {
     dialog_title: 'Создание вакансии',
     submit_button: 'Создать вакансию',
     close_button: 'Закрыть',
+    apply_now: 'Откликнуться на вакансию',
     form_labels: {
       name_kz: 'Название на казахском',
       name_ru: 'Название на русском',

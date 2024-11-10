@@ -32,6 +32,8 @@ export const MAIN_TRANSLATIONS_KZ = {
     dialog_title: 'Жұмыс орнын құру',
     submit_button: 'Жұмыс орнын құру',
     close_button: 'Жабу',
+    apply_now: 'Жұмысқа жауап беру',
+
     form_labels: {
       name_kz: 'Атауы қазақ тілінде',
       name_ru: 'Атауы орыс тілінде',
@@ -175,6 +177,7 @@ export const MAIN_TRANSLATIONS_KZ = {
     placeholder_name: 'Компания атауын енгізіңіз',
     no_logo: 'Логотип жоқ',
   },
+  apply_now: 'Откликнуться на вакансию',
   back: 'Артқа',
   vacancy: 'Жұмыс орны',
   desc: 'Сипаттама',

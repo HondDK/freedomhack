@@ -24,13 +24,13 @@ const JobFormSchema = z.object({
   name_kz: z.string().min(1, 'Название на казахском обязательно').max(255),
   name_ru: z.string().min(1, 'Название на русском обязательно').max(255),
   name_en: z.string().min(1, 'Название на английском обязательно').max(255),
-  description_kz: z.string().optional().nullable(),
-  description_ru: z.string().optional().nullable(),
-  description_en: z.string().optional().nullable(),
+  description_kz: z.string().optional(),
+  description_ru: z.string().optional(),
+  description_en: z.string().optional(),
   requirements_kz: z.string().min(1, 'Требования к кандидату на казахском обязательны'),
   requirements_ru: z.string().min(1, 'Требования к кандидату на русском обязательны'),
   requirements_en: z.string().min(1, 'Требования к кандидату на английском обязательны'),
-  work_format: z.number().optional().nullable(),
+  work_format: z.number().optional(),
   work_experience: z.number().optional().nullable(),
   work_direction: z.number().optional().nullable(),
   sub_work_direction: z.number().optional().nullable(),
@@ -41,6 +41,7 @@ const JobFormSchema = z.object({
   city: z.number().optional().nullable(),
   skills: z.array(z.number()).min(1, 'Навыки обязательны').optional(),
 });
+
 
 type JobFormFields = keyof z.infer<typeof JobFormSchema>;
 
@@ -147,6 +148,8 @@ export function JobCreate({ filters }: TProps) {
           </h2>
         </DialogHeader>
         <Form {...form}>
+          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/*// @ts-ignore*/}
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {fieldsConfig.map(({ name, component: Component }) => (
               <FormField
@@ -154,6 +157,8 @@ export function JobCreate({ filters }: TProps) {
                   <FormItem>
                     <FormLabel>{t(`job_create_form.form_labels.${name}`)}</FormLabel>
                     <FormControl>
+                      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                      {/*// @ts-ignore*/}
                       <Component
                         {...field}
                       />
