@@ -1,6 +1,10 @@
+'use client';
+
 import { useState } from 'react';
+import { useLanguage } from '@/core/providers/I18nextProvider/LanguageContext/LanguageContext';
 import { TGetJobsReqDto } from '@/entities/job/api';
 import { useGetSkills } from '@/entities/skill/hooks';
+import { useScopedI18n } from '@/shared/config';
 import { FilterCheckboxGroup } from '@/shared/ui';
 
 type TProps = {
@@ -8,7 +12,9 @@ type TProps = {
 };
 
 export function SkillFilters({ setFilters }: TProps) {
+  const t = useScopedI18n('base.skill_filters');
   const { data } = useGetSkills();
+  const { language } = useLanguage(); // Get the selected language
   const [selectedMainSkills, setSelectedMainSkills] = useState<number[]>([]);
 
   const updateFilters = ({ main }: { main: number[] }) => {
@@ -20,13 +26,15 @@ export function SkillFilters({ setFilters }: TProps) {
 
   return (
     <FilterCheckboxGroup
-      data={data?.map((item) => ({
-        id: item.id,
-        name: item.name_ru,
-      })) || []}
+      data={
+        data?.map((item) => ({
+          id: item.id,
+          name: item[`name_${language}` as keyof typeof item] as string,
+        })) || []
+      }
       selectedMainItems={selectedMainSkills}
       setFilters={updateFilters}
-      label="Навыки"
+      label={t('label')}
     />
   );
 }

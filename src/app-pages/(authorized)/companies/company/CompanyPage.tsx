@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDeleteCompany } from '@/entities/company/hooks/useDeleteCompany';
 import { useEditCompany } from '@/entities/company/hooks/useEditCompany';
 import { useGetCompany } from '@/entities/company/hooks/useGetCompany';
+import { useScopedI18n } from '@/shared/config';
 import { Button } from '@/shared/ui/button';
 import { CardFooter, CardHeader, Card } from '@/shared/ui/card';
 import { Input } from '@/shared/ui/input';
@@ -15,6 +16,7 @@ type TProps = {
 };
 
 export function CompanyPage({ id }: TProps) {
+  const t = useScopedI18n('base.company_page');
   const router = useRouter();
   const { data, isPending } = useGetCompany(Number(id));
   const { mutate: editCompany, isSuccess: successEdit } = useEditCompany();
@@ -25,21 +27,15 @@ export function CompanyPage({ id }: TProps) {
   const handleEdit = () => {
     editCompany({
       id: Number(id),
-      name: companyName
+      name: companyName,
     });
   };
 
   useEffect(() => {
-    if (successEdit) {
+    if (successEdit || successDelete) {
       router.push('/companies');
     }
-  }, [router, successEdit]);
-
-  useEffect(() => {
-    if (successDelete) {
-      router.push('/companies');
-    }
-  }, [router, successDelete]);
+  }, [router, successEdit, successDelete]);
 
   const handleDelete = () => {
     deleteCompany({ id: Number(id) });
@@ -50,27 +46,31 @@ export function CompanyPage({ id }: TProps) {
   }
 
   if (!data) {
-    return <p className="text-center mt-4">No data available</p>;
+    return <p className="text-center mt-4">{t('no_data')}</p>;
   }
 
   return (
     <div className="mt-6 flex flex-col items-center px-4">
       <Button onClick={() => router.back()} variant="outline" className="mb-4">
-        Назад
+        {t('back')}
       </Button>
       <Card className="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
         <CardHeader className="text-center">
           {data.logo ? (
-            <img className="w-20 h-20 md:w-24 md:h-24 mb-4 object-contain mx-auto" alt={`${data.name} logo`} src={data.logo} />
+            <img
+              className="w-20 h-20 md:w-24 md:h-24 mb-4 object-contain mx-auto"
+              alt={`${data.name} logo`}
+              src={data.logo}
+            />
           ) : (
             <div className="w-20 h-20 md:w-24 md:h-24 mb-4 bg-gray-200 rounded-full flex items-center justify-center">
-              <span className="text-gray-500 text-sm md:text-lg">No Logo</span>
+              <span className="text-gray-500 text-sm md:text-lg">{t('no_logo')}</span>
             </div>
           )}
           {isEditing ? (
             <Input
               onChange={(e) => setCompanyName(e.target.value)}
-              placeholder="Введите название компании"
+              placeholder={t('placeholder_name')}
               className="w-full mb-4"
               value={companyName}
             />
@@ -81,15 +81,15 @@ export function CompanyPage({ id }: TProps) {
         <CardFooter className="flex flex-col md:flex-row justify-between gap-4 mt-4">
           {isEditing ? (
             <Button className="bg-green-500 text-white hover:bg-green-600 w-full" onClick={handleEdit}>
-              Сохранить
+              {t('save')}
             </Button>
           ) : (
             <Button className="bg-blue-500 text-white hover:bg-blue-600 w-full" onClick={() => setIsEditing(true)}>
-              Редактировать
+              {t('edit')}
             </Button>
           )}
           <Button onClick={handleDelete} className="w-full" variant="outline">
-            Удалить
+            {t('delete')}
           </Button>
         </CardFooter>
       </Card>

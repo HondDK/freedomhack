@@ -1,3 +1,4 @@
+import { MAIN_TRANSLATIONS_RU } from '@/shared/config/translations/ru/index';
 import {
   COPY_TEXT_TRANSLATIONS,
   BUTTON_TRANSLATIONS,
@@ -19,5 +20,6 @@ export default {
   main: MAIN_TRANSLATIONS,
   menu: MENU_TRANSLATIONS,
   auth: AUTH_TRANSLATIONS,
+  base: MAIN_TRANSLATIONS_RU,
   ...apiErrors,
 } as const

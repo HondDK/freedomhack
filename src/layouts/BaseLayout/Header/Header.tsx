@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { ScanEye } from 'lucide-react';
 import Link from 'next/link';
+import { useLanguage } from '@/core/providers/I18nextProvider/LanguageContext/LanguageContext';
 import { Button } from '@/shared/ui/button';
 import {
 
@@ -15,11 +16,16 @@ import {
   DropdownMenuItem,
   DropdownMenu,
 } from '@/shared/ui/dropdown-menu'
+import { SelectContent, SelectTrigger, SelectValue, SelectItem, Select } from '@/shared/ui/select';
 import { SheetContent, SheetTrigger, Sheet } from '@/shared/ui/sheet'
 
 export function Header() {
+  const { language, setLanguage } = useLanguage();
+  const isAuth = hasCookie('authToken');
 
-  const isAuth = hasCookie('authToken')
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value);
+  };
 
   return <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
     <nav
@@ -108,6 +114,16 @@ export function Header() {
     <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
       <form className="ml-auto flex-1 sm:flex-initial">
       </form>
+      <Select onValueChange={handleLanguageChange} value={language}>
+        <SelectTrigger className="w-32">
+          <SelectValue placeholder="Select Language" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="ru">Русский</SelectItem>
+          <SelectItem value="kz">Қазақ</SelectItem>
+          <SelectItem value="en">English</SelectItem>
+        </SelectContent>
+      </Select>
       {!isAuth && <Link className={'text-muted-foreground transition-colors hover:text-foreground'} href={'/auth'}>
         Войти
       </Link>}

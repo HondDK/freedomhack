@@ -1,3 +1,4 @@
+import { MAIN_TRANSLATIONS_KZ } from '@/shared/config/translations/kz/index';
 import {
   COPY_TEXT_TRANSLATIONS,
   BUTTON_TRANSLATIONS,
@@ -17,5 +18,6 @@ export default {
   input: INPUT_TRANSLATIONS,
   main: MAIN_TRANSLATIONS,
   menu: MENU_TRANSLATIONS,
+  base: MAIN_TRANSLATIONS_KZ,
   ...apiErrors,
 } as const

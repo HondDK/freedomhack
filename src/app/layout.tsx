@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
-import { QueryProvider, ThemeProvider } from '@/core/providers';
+import { I18nextProvider, QueryProvider, ThemeProvider } from '@/core/providers';
+import { LanguageProvider } from '@/core/providers/I18nextProvider/LanguageContext/LanguageContext';
 import GuardProvider from '../core/providers/GuardProvider/GuardProvider';
 
 const geistSans = localFont({
@@ -30,14 +31,18 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <QueryProvider>
           <GuardProvider>
-            <ThemeProvider
-              disableTransitionOnChange
-              defaultTheme="system"
-              attribute="class"
-              enableSystem
-            >
-              {children}
-            </ThemeProvider>
+            <LanguageProvider>
+              <I18nextProvider>
+                <ThemeProvider
+                  disableTransitionOnChange
+                  defaultTheme="system"
+                  attribute="class"
+                  enableSystem
+                >
+                  {children}
+                </ThemeProvider>
+              </I18nextProvider>
+            </LanguageProvider>
           </GuardProvider>
         </QueryProvider>
       </body>

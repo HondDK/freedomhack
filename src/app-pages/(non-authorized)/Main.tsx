@@ -6,10 +6,12 @@ import { JobCreate, JobSearch } from '@/features/job/ui';
 import { JobCard } from '@/entities/job';
 import { TGetJobsReqDto } from '@/entities/job/api';
 import { useGetJobs } from '@/entities/job/hooks/useGetJobs';
+import { useScopedI18n, useI18n } from '@/shared/config';
 
 export function Main() {
   const [filters, setFilters] = useState<TGetJobsReqDto>({});
   const [showFilters, setShowFilters] = useState(false);
+  const t = useScopedI18n('base');
 
   const { data, isPending } = useGetJobs(filters);
 
@@ -19,13 +21,13 @@ export function Main() {
       <div className='flex-1 max-w-screen-lg'>
         <div className={'flex w-full flex-col lg:flex-row justify-between'}>
           <h1 className='text-3xl font-extrabold tracking-tight lg:text-5xl text-center'>
-            Вакансии ({data?.length})
+            {t('main.vacancies_count', { count: data?.length || 0 })}
           </h1>
           <JobCreate filters={filters} />
         </div>
         <JobSearch setFilters={setFilters} filters={filters}/>
         <div className='mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
-          {isPending && <p className='text-center mt-4'>Загрузка...</p>}
+          {isPending && <p className='text-center mt-4'>{t('main.loading')}</p>}
           {data?.map((job) => (
             <JobCard key={job.id} data={job}/>
           ))}
@@ -41,7 +43,7 @@ export function Main() {
             className="lg:hidden absolute top-4 right-4 font-semibold text-gray-600"
             onClick={() => setShowFilters(false)}
           >
-              Закрыть
+            {t('main.close')}
           </button>
           <FiltrationJobs setFilters={setFilters}/>
         </div>
@@ -53,7 +55,7 @@ export function Main() {
           className="lg:hidden fixed bottom-5 right-5 p-3 bg-blue-500 text-white rounded-full shadow-lg z-10"
           onClick={() => setShowFilters(true)}
         >
-            Фильтры
+          {t('main.filters')}
         </button>
       )}
     </div>

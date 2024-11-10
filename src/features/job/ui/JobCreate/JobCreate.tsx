@@ -13,6 +13,7 @@ import { SkillMultiSelect } from '@/entities/skill';
 import { DirectionSelect } from '@/entities/work/direction/ui/DirectionSelect';
 import { ExperienceSelect } from '@/entities/work/experience/ui';
 import { FormatSelect } from '@/entities/work/format/ui';
+import { useScopedI18n } from '@/shared/config';
 import { Button } from '@/shared/ui/button';
 import { DialogTrigger, DialogContent, DialogFooter, DialogHeader, DialogClose, Dialog } from '@/shared/ui/dialog';
 import { FormControl, FormMessage, FormField, FormLabel, FormItem, Form } from '@/shared/ui/form';
@@ -97,10 +98,12 @@ type TProps = {
   filters: TGetJobsReqDto
 }
 
+
 export function JobCreate({ filters }: TProps) {
   const { mutate, isSuccess } = useCreateJob();
   const [isOpen, setIsOpen] = useState(false);
   const queryClient = getQueryClient();
+  const t = useScopedI18n('base');
 
   const form = useForm<z.infer<typeof JobFormSchema>>({
     resolver: zodResolver(JobFormSchema),
@@ -130,29 +133,30 @@ export function JobCreate({ filters }: TProps) {
     }
   }, [filters, isSuccess, queryClient]);
 
-  // @ts-ignore
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogTrigger asChild>
-        <Button onClick={() => setIsOpen(true)} className={'mt-3 mb-3'}>Создать вакансию</Button>
+        <Button onClick={() => setIsOpen(true)} className="mt-3 mb-3">
+          {t('job_create_form.submit_button')}
+        </Button>
       </DialogTrigger>
       <DialogContent className="w-full max-w-lg sm:max-w-2xl h-full max-h-screen sm:h-[90vh] overflow-y-auto rounded-lg p-4 sm:p-6">
         <DialogHeader>
-          <h2 className="text-xl font-semibold mb-2">Создание вакансии</h2>
+          <h2 className="text-xl font-semibold mb-2">
+            {t('job_create_form.dialog_title')}
+          </h2>
         </DialogHeader>
         <Form {...form}>
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/*// @ts-ignore*/}
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {fieldsConfig.map(({ name, label, placeholder, component: Component }) => (
+            {fieldsConfig.map(({ name, component: Component }) => (
               <FormField
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{label}</FormLabel>
+                    <FormLabel>{t(`job_create_form.form_labels.${name}`)}</FormLabel>
                     <FormControl>
-                      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                      {/*// @ts-ignore*/}
-                      <Component placeholder={placeholder as string} {...field} />
+                      <Component
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -163,9 +167,13 @@ export function JobCreate({ filters }: TProps) {
               />
             ))}
             <DialogFooter>
-              <Button className={'mb-3'} type="submit">Создать вакансию</Button>
+              <Button className="mb-3" type="submit">
+                {t('job_create_form.submit_button')}
+              </Button>
               <DialogClose asChild>
-                <Button className={'mb-3'} variant="outline">Закрыть</Button>
+                <Button variant="outline" className="mb-3">
+                  {t('job_create_form.close_button')}
+                </Button>
               </DialogClose>
             </DialogFooter>
           </form>

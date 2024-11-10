@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useScopedI18n } from '@/shared/config';
 import { Button } from '@/shared/ui/button';
 import { FormControl, FormMessage, FormField, FormItem, Form } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
@@ -25,6 +26,7 @@ type TJobApplicationFormProps = {
 const HOST = 'https://dudeonthecam.online/freedom_back/api/';
 
 export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
+  const t = useScopedI18n('base.job_create_form');
   const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
 
   const form = useForm<FormData>({
@@ -53,10 +55,10 @@ export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
         body: formData,
       });
 
-      setSubmissionStatus(response.ok ? 'Резюме успешно отправлено.' : 'Ошибка при отправке резюме.');
+      setSubmissionStatus(response.ok ? t('messages.success') : t('messages.error'));
     } catch (error) {
       console.error('Ошибка отправки резюме:', error);
-      setSubmissionStatus('Ошибка при отправке резюме.');
+      setSubmissionStatus(t('messages.error'));
     }
   };
 
@@ -67,9 +69,9 @@ export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
           <FormField
             render={({ field }) => (
               <FormItem>
-                <Label htmlFor="full_name">ФИО</Label>
+                <Label htmlFor="full_name">{t('form_labels.full_name')}</Label>
                 <FormControl>
-                  <Input {...field} placeholder="Введите ваше ФИО" id="full_name" />
+                  <Input {...field} placeholder={t('placeholders.full_name')} id="full_name" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -80,9 +82,9 @@ export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
           <FormField
             render={({ field }) => (
               <FormItem>
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t('form_labels.email')}</Label>
                 <FormControl>
-                  <Input {...field} placeholder="Введите ваш email" type="email" id="email" />
+                  <Input {...field} placeholder={t('placeholders.email')} type="email" id="email" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -93,9 +95,9 @@ export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
           <FormField
             render={({ field }) => (
               <FormItem>
-                <Label htmlFor="phone_number">Номер телефона</Label>
+                <Label htmlFor="phone_number">{t('form_labels.phone_number')}</Label>
                 <FormControl>
-                  <Input {...field} placeholder="Введите ваш номер телефона" id="phone_number" />
+                  <Input {...field} placeholder={t('placeholders.phone_number')} id="phone_number" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -106,7 +108,7 @@ export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
           <FormField
             render={({ field }) => (
               <FormItem>
-                <Label htmlFor="cv_file">Резюме (CV)</Label>
+                <Label htmlFor="cv_file">{t('form_labels.cv_file')}</Label>
                 <FormControl>
                   <Input
                     onChange={(e) => field.onChange(e.target.files)}
@@ -122,10 +124,10 @@ export function JobVacancyRespond({ jobId }: TJobApplicationFormProps) {
             name="cv_file"
           />
           <Button disabled={form.formState.isSubmitting} type="submit">
-            {form.formState.isSubmitting ? 'Отправка...' : 'Откликнуться на вакансию'}
+            {form.formState.isSubmitting ? t('messages.sending') : t('apply_now')}
           </Button>
           {submissionStatus && (
-            <p className={`mt-2 text-sm ${submissionStatus === 'Резюме успешно отправлено.' ? 'text-green-600' : 'text-red-600'}`}>
+            <p className={`mt-2 text-sm ${submissionStatus === t('messages.success') ? 'text-green-600' : 'text-red-600'}`}>
               {submissionStatus}
             </p>
           )}

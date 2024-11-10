@@ -6,26 +6,28 @@ import { ResumeSearch, UploadResume } from '@/features/job-candidate/ui';
 import { TGetJobCandidatesReqDto } from '@/entities/job-candidate/api';
 import { useGetJobCandidates } from '@/entities/job-candidate/hooks/useGetJobCandidates';
 import { ResumeCard } from '@/entities/job-candidate/ui/ResumeCard/ResumeCard';
+import { useScopedI18n } from '@/shared/config';
 
 export function ResumePage() {
+  const t = useScopedI18n('base.resume_page');
   const [filters, setFilters] = useState<TGetJobCandidatesReqDto>({});
-  const { data, isPending } = useGetJobCandidates(filters)
+  const { data, isPending } = useGetJobCandidates(filters);
   const [showFilters, setShowFilters] = useState(false);
 
   return (
     <div className="w-full px-4 mt-3 flex flex-col lg:flex-row justify-between gap-4">
       <div className="flex-1 max-w-screen-lg">
-        <div className={'flex w-full flex-col lg:flex-row justify-between'}>
+        <div className="flex w-full flex-col lg:flex-row justify-between">
           <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-5xl">
-            Резюме ({data?.length})
+            {t('title')} ({data?.length})
           </h1>
-          <UploadResume filters={filters}/>
+          <UploadResume filters={filters} />
         </div>
-        <ResumeSearch setFilters={setFilters} filters={filters}/>
+        <ResumeSearch setFilters={setFilters} filters={filters} />
         <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {isPending && <p className="text-center mt-4">Загрузка...</p>}
+          {isPending && <p className="text-center mt-4">{t('loading')}</p>}
           {data?.map((resume) => (
-            <ResumeCard key={resume.id} data={resume}/>
+            <ResumeCard key={resume.id} data={resume} />
           ))}
         </div>
       </div>
@@ -38,9 +40,9 @@ export function ResumePage() {
             className="lg:hidden absolute top-4 right-4 font-semibold text-gray-600"
             onClick={() => setShowFilters(false)}
           >
-              Закрыть
+            {t('close')}
           </button>
-          <FiltrationResume setFilters={setFilters}/>
+          <FiltrationResume setFilters={setFilters} />
         </div>
       </div>
       {/* Mobile Filter Toggle Button */}
@@ -49,7 +51,7 @@ export function ResumePage() {
           className="lg:hidden fixed bottom-5 right-5 p-3 bg-blue-500 text-white rounded-full shadow-lg z-10"
           onClick={() => setShowFilters(true)}
         >
-            Фильтры
+          {t('filters')}
         </button>
       )}
     </div>

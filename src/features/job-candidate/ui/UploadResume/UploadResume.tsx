@@ -1,3 +1,5 @@
+'use client';
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { getCookie } from 'cookies-next';
 import { useState } from 'react';
@@ -5,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { getQueryClient } from '@/core/providers/QueryProvider/QueryProvider';
 import { TGetJobCandidatesReqDto, GET_JOB_CANDIDATES } from '@/entities/job-candidate/api';
+import { useScopedI18n } from '@/shared/config';
 import { Button } from '@/shared/ui/button';
 import { DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog } from '@/shared/ui/dialog';
 import { FormControl, FormMessage, FormField, FormItem, Form } from '@/shared/ui/form';
@@ -21,11 +24,12 @@ const HOST = 'https://dudeonthecam.online/freedom_back/api/';
 const token = getCookie('authToken');
 
 type TProps = {
-  filters: TGetJobCandidatesReqDto
-}
+  filters: TGetJobCandidatesReqDto;
+};
 
 export function UploadResume(props: TProps) {
   const { filters } = props;
+  const t = useScopedI18n('base.resume_upload');
   const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -51,18 +55,18 @@ export function UploadResume(props: TProps) {
         body: formData,
         headers: {
           ...(token && { Authorization: `Bearer ${token}` }),
-        }
+        },
       });
 
       if (response.ok) {
-        setSubmissionStatus('Резюме успешно загружены.');
+        setSubmissionStatus(t('success'));
         setIsDialogOpen(false); // Close the dialog on successful upload
       } else {
-        setSubmissionStatus('Ошибка при загрузке резюме.');
+        setSubmissionStatus(t('error'));
       }
     } catch (error) {
       console.error('Ошибка отправки резюме:', error);
-      setSubmissionStatus('Ошибка при отправке резюме.');
+      setSubmissionStatus(t('error'));
     } finally {
       await queryClient.invalidateQueries({ queryKey: [GET_JOB_CANDIDATES, filters], type: 'all' });
       setIsLoading(false);
@@ -72,18 +76,20 @@ export function UploadResume(props: TProps) {
   return (
     <Dialog onOpenChange={setIsDialogOpen} open={isDialogOpen}>
       <DialogTrigger asChild>
-        <Button onClick={() => setIsDialogOpen(true)} className="mt-4">Загрузка резюме</Button>
+        <Button onClick={() => setIsDialogOpen(true)} className="mt-4">
+          {t('button')}
+        </Button>
       </DialogTrigger>
       <DialogContent className="p-6 bg-white shadow-lg rounded-lg w-96">
         <DialogHeader>
-          <DialogTitle className="text-lg font-semibold">Загрузить новые резюме</DialogTitle>
+          <DialogTitle className="text-lg font-semibold">{t('dialog_title')}</DialogTitle>
         </DialogHeader>
         <Form {...form}>
           <form className="space-y-6">
             <FormField
               render={({ field }) => (
                 <FormItem>
-                  <Label htmlFor="file">Выберите архив с резюме (CV)</Label>
+                  <Label htmlFor="file">{t('select_file')}</Label>
                   <FormControl>
                     <Input
                       onChange={(e) => {
@@ -102,7 +108,7 @@ export function UploadResume(props: TProps) {
               control={form.control}
               name="file"
             />
-            {isLoading && <p>Загрузка...</p>}
+            {isLoading && <p>{t('loading')}</p>}
             {submissionStatus && <p>{submissionStatus}</p>}
           </form>
         </Form>
